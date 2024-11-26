@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import os
 
-# URL of the eCommerce product category page (e.g., birthday beauty accessories)
+# URL of the eCommerce product category page
 url = 'https://addisber.com/product-category/party-items/birthday-beauty-accessories/'
 
 # Define headers to simulate a real browser request
@@ -32,15 +32,15 @@ product_data = []
 
 # Loop through each product and extract details
 for product in products:
-    # Extract the product name (assuming it's inside an <h3> tag with class 'woocommerce-loop-product__title')
+    # Extract the product name
     title_tag = product.find('h3', class_='woocommerce-loop-product__title')
     title = title_tag.text.strip() if title_tag else 'No title found'
 
-    # Extract the product price (assuming it's inside a <span> tag with class 'price')
+    # Extract the product price
     price_tag = product.find('span', class_='price')
     price = price_tag.text.strip() if price_tag else 'No price found'
 
-    # Extract the product URL (assuming the product link is inside an <a> tag)
+    # Extract the product URL
     link_tag = product.find('a', href=True)
     link = link_tag['href'] if link_tag else 'No link found'
 
