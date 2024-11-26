@@ -52,9 +52,10 @@ for product in products:
 
 # Convert the list of product data into a pandas DataFrame
 df = pd.DataFrame(product_data)
+output_csv_path = './ecommerce/output.csv'
 
 # Save the data to a CSV file
-df.to_csv('eeeee.csv', index=False)
+df.to_csv(output_csv_path, index=False)
 
 # Print a confirmation message
-print("Scraping completed and data saved to 'eeee.csv'")
+print(f"CSV saved to {output_csv_path}")
