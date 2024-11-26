@@ -29,8 +29,7 @@ jobs:
       - name: Run scraper script
         run: python scrape.py  # Replace with your script file name
 
-      - name: Upload output CSV as artifact (optional)
-        uses: actions/upload-artifact@v3
-        with:
-          name: web-scraping-data
-          path: ./data/output.csv  # Path to your CSV file output (change if necessary)
+      - name: Save output to ecommerce directory
+        run: |
+          mkdir -p ./ecommerce  # Create the ecommerce directory if it doesn't exist
+          mv ./data/output.csv ./ecommerce/output.csv  # Move the output CSV file to ecommerce/ directory
