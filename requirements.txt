@@ -1,5 +1,5 @@
 beautifulsoup4
-pyppeteer
+playwright
 pandas
 requests
 schedule
