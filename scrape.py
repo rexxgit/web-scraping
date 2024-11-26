@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import os
 
 # URL of the eCommerce product category page (e.g., birthday beauty accessories)
 url = 'https://addisber.com/product-category/party-items/birthday-beauty-accessories/'
@@ -50,8 +51,13 @@ for product in products:
         'link': link
     })
 
+# Create the 'ecommerce' folder if it doesn't exist
+os.makedirs('./ecommerce', exist_ok=True)
+
 # Convert the list of product data into a pandas DataFrame
 df = pd.DataFrame(product_data)
+
+# Define the output CSV path inside the 'ecommerce' folder
 output_csv_path = './ecommerce/output.csv'
 
 # Save the data to a CSV file
