@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'  # Specify the version of Python
+          python-version: '3.12.1'  # Specify the version of Python
 
       - name: Run scraper script
         run: python scrape.py  # Replace with your script file name
