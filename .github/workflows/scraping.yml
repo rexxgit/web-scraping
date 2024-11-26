@@ -27,12 +27,9 @@ jobs:
           python -m playwright install chromium  # Install Chromium for Playwright (if needed)
 
       - name: Run scraper script
-        env:
-          MY_PAT: ${{ secrets.MY_PAT }}  # Use the PAT stored in GitHub Secrets
-        run: |
-          python scrape.py  # Run the script that generates the output.csv
+        run: python scrape.py  # Run the script that generates the output.csv
 
-      # Optional: Push the results back to the repository
+      # Commit and push scraped data back to the repository
       - name: Commit and push scraped data
         run: |
           git config --global user.name "GitHub Actions"
@@ -41,4 +38,4 @@ jobs:
           git commit -m "Update scraped data"
           git push
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub's automatic token for pushing changes
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # GitHub automatically provides this token for authentication
