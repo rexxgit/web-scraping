@@ -2,8 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 import os
+from github import Github
 
-# URL of the eCommerce product category page (e.g., birthday beauty accessories)
+# URL of the eCommerce product category page
 url = 'https://addisber.com/product-category/party-items/birthday-beauty-accessories/'
 
 # Define headers to simulate a real browser request
@@ -65,3 +66,31 @@ df.to_csv(output_csv_path, index=False)
 
 # Print a confirmation message
 print(f"CSV saved to {output_csv_path}")
+
+# Optionally: Push the result to GitHub (if you want to upload the CSV to your private repository)
+# Use the PAT from environment variable to authenticate with GitHub API
+pat = os.getenv('MY_PAT')
+
+if pat:
+    try:
+        # Authenticate with GitHub using the PAT
+        g = Github(pat)
+        repo = g.get_repo('rexxgit/web-scraping')  # Your username and repository
+        file_path = 'ecommerce/output.csv'
+        
+        # Try to upload the file to the repository (you can modify this part based on your requirements)
+        with open(output_csv_path, 'r') as file:
+            content = file.read()
+        
+        try:
+            # Try to update the file if it exists
+            existing_file = repo.get_contents(file_path)
+            repo.update_file(existing_file.path, 'Update product data', content, existing_file.sha)
+            print(f"File updated in the repository: {file_path}")
+        except:
+            # If the file does not exist, create it
+            repo.create_file(file_path, 'Add product data', content)
+            print(f"File created in the repository: {file_path}")
+    
+    except Exception as e:
+        print(f"Error uploading to GitHub: {e}")
