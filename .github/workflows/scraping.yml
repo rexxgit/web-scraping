@@ -1,0 +1,22 @@
+name: Web Scraping
+
+on:
+  schedule:
+    # This cron expression means "every day at 6 AM UTC"
+    - cron: '0 6 * * *'
+  workflow_dispatch:  # Allows manual triggering from GitHub UI
+
+jobs:
+  scraping:
+    runs-on: ubuntu-latest  # Runs on the latest Ubuntu image
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3  # This checks out your repo to the runner
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'  # Specify the version of Python
+
+      - name: Run scraper script
+        run: python scrape.py  # Replace with your script file name
