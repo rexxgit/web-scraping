@@ -1,5 +1,5 @@
-beautifulsoup4
-playwright
-pandas
 requests
-schedule
+beautifulsoup4
+pandas
+pygithub
+playwright
