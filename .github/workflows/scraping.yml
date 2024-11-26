@@ -18,5 +18,19 @@ jobs:
         with:
           python-version: '3.12.1'  # Specify the version of Python
 
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt  # Install all libraries in requirements.txt
+
+      - name: Install Playwright and Chromium
+        run: |
+          python -m playwright install chromium  # Install Chromium for Playwright (if you need it)
+
       - name: Run scraper script
         run: python scrape.py  # Replace with your script file name
+
+      - name: Upload output CSV as artifact (optional)
+        uses: actions/upload-artifact@v3
+        with:
+          name: web-scraping-data
+          path: ./data/output.csv  # Path to your CSV file output (change if necessary)
