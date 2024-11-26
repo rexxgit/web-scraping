@@ -22,14 +22,12 @@ jobs:
         run: |
           pip install -r requirements.txt  # Install all libraries in requirements.txt
 
-      - name: Install Playwright and Chromium
+      - name: Install Playwright and Chromium (Optional)
         run: |
-          python -m playwright install chromium  # Install Chromium for Playwright (if you need it)
+          python -m playwright install chromium  # Install Chromium for Playwright (if needed)
 
       - name: Run scraper script
-        run: python scrape.py  # Replace with your script file name
+        run: python scrape.py  # Run the script that generates the output.csv
 
-      - name: Save output to ecommerce directory
-        run: |
-          mkdir -p ./ecommerce  # Create the ecommerce directory if it doesn't exist
-          mv ./data/output.csv ./ecommerce/output.csv  # Move the output CSV file to ecommerce/ directory
+      # This step is not necessary for pushing the changes back to the repo
+      # Remove commit and push part if not needed
