@@ -2,8 +2,8 @@ name: Web Scraping
 
 on:
   schedule:
-    # This cron expression means "every day at 8:30 PM Ethiopian time (UTC +3)"
-    - cron: '20 18 * * *'
+    # This cron expression means "every day at 9:35 PM Ethiopian time (UTC +3)"
+    - cron: '35 18 * * *'  # Run at 9:35 PM EAT (6:35 PM UTC)
   workflow_dispatch:  # Allows manual triggering from GitHub UI
 
 permissions:
@@ -27,15 +27,15 @@ jobs:
 
       - name: Run scraper script
         run: |
-          python3 scripts/scrape1.py  # Run the script
+          python3 scripts/scrape1.py  # Run the scraper script
 
       - name: Commit and push scraped data
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           
-          # Ensure the ecommerce directory is added to Git
-          git add web-scraping/ecommerce/
+          # Ensure the ecommerce directory or specific file is added to Git
+          git add web-scraping/ecommerce/addisber.com_food-items_instant-foods.csv
           
           # Commit the changes
           git commit -m "Update scraped data"
