@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import os  # To handle directory creation
 
 # URL of the page to scrape
 url = 'https://addisber.com/product-category/food-items/instant-foods/'
@@ -57,8 +58,15 @@ if len(product_data) == 0:
 # Convert the list of product data into a DataFrame
 df = pd.DataFrame(product_data)
 
-# Save the data to a CSV file (updated to new path and file name)
-output_path = 'web-scraping/ecommerce/addisber.com_food-items_instant-foods.csv'
+# Define the path for the output CSV file
+output_path = 'web-scraping/ecommerce/addisber_com_food_items_instant_foods.csv'
+
+# Ensure the target directory exists, create it if it doesn't
+output_dir = os.path.dirname(output_path)
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
+# Save the data to a CSV file
 df.to_csv(output_path, index=False)
 
-print("Scraping completed and data saved to 'web-scraping/ecommerce/addisber.com_food-items_instant-foods.csv'")
+print(f"Scraping completed and data saved to '{output_path}'")
