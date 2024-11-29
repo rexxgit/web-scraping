@@ -2,9 +2,9 @@ name: Web Scraping
 
 on:
   schedule:
-    # This cron expression means "every day at 5:20 PM UTC",
-    # which is 8:20 PM Ethiopian Time (EAT)
-    - cron: '20 17 * * *'  # Runs at 8:20 PM EAT (5:20 PM UTC)
+    # This cron expression means "every day at 5:30 PM UTC",
+    # which is 8:30 PM Ethiopian Time (EAT)
+    - cron: '30 17 * * *'  # Runs at 8:30 PM EAT (5:30 PM UTC)
   workflow_dispatch:  # Allows manual triggering from GitHub UI
 
 permissions:
@@ -32,7 +32,7 @@ jobs:
 
       # Step 4: Run the scraping script located in /scripts/scrape1.py
       - name: Run scraping script
-        run: python3 web-scraping/scripts/scrape1.py  # Corrected to run the script without "python"
+        run: python3 scripts/scrape1.py  # Corrected the script path to point to the correct location
 
       # Step 5: Commit and push scraped data to the repository
       - name: Commit and push scraped data
