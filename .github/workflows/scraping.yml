@@ -2,9 +2,9 @@ name: Web Scraping
 
 on:
   schedule:
-    # Cron expression for running the script at 5:00 PM UTC every day,
-    # which is 8:00 PM Ethiopian Time (EAT)
-    - cron: '0 17 * * *'
+    # This cron expression means "every day at 5:20 PM UTC",
+    # which is 8:20 PM Ethiopian Time (EAT)
+    - cron: '20 17 * * *'  # Runs at 8:20 PM EAT (5:20 PM UTC)
   workflow_dispatch:  # Allows manual triggering from GitHub UI
 
 permissions:
@@ -26,12 +26,13 @@ jobs:
           python-version: '3.12.1'  # Specify the version of Python
 
       # Step 3: Install dependencies
+      - name: Install dependencies
         run: |
           pip install -r requirements.txt  # Install all libraries in requirements.txt
 
       # Step 4: Run the scraping script located in /scripts/scrape1.py
       - name: Run scraping script
-        run: python web-scraping/scripts/scrape1.py  # Point to the correct script path
+        run: python3 web-scraping/scripts/scrape1.py  # Corrected to run the script without "python"
 
       # Step 5: Commit and push scraped data to the repository
       - name: Commit and push scraped data
