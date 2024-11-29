@@ -1,36 +1,37 @@
-import os
-import pandas as pd
-from requests import get
+import requests
 from bs4 import BeautifulSoup
+import pandas as pd
+import os
 
 # URL of the page to scrape
 url = 'https://addisber.com/product-category/food-items/instant-foods/'
 
-# Define headers to simulate a real browser request
+# Define headers to simulate a real browser request (to avoid anti-scraping measures)
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
 }
 
 # Send the HTTP request with the headers
-response = get(url, headers=headers)
-
-# Check if the request was successful
-if response.status_code != 200:
-    print(f"Failed to retrieve the page: {response.status_code}")
-    exit()
+try:
+    response = requests.get(url, headers=headers)
+    response.raise_for_status()  # This will raise an exception for HTTP errors (4xx, 5xx)
+    print("Request successful!")
+except requests.exceptions.RequestException as e:
+    print(f"Request failed: {e}")
+    exit()  # Exit the script if the request fails
 
 # Parse the content of the page using BeautifulSoup
 soup = BeautifulSoup(response.text, 'html.parser')
 
-# Find all product containers (you may need to adjust this based on your page structure)
+# Find all product containers (update the class based on the page structure)
 products = soup.find_all('li', class_='product')
 
 # List to store product details
-new_data = []
+product_data = []
 
 # Loop through each product and extract details
 for product in products:
-    # Extract product title (updated to <h3> tag)
+    # Extract product title
     title_tag = product.find('h3', class_='woocommerce-loop-product__title')
     title = title_tag.text.strip() if title_tag else 'No title found'
     
@@ -43,40 +44,29 @@ for product in products:
     link = link_tag['href'] if link_tag else 'No link found'
     
     # Append extracted data to the list
-    new_data.append({
+    product_data.append({
         'title': title,
         'price': price,
         'link': link
     })
 
-# Check if the data was successfully scraped
-if not new_data:
-    print("No products found.")
-    exit()
+# Check if data was extracted before proceeding
+if len(product_data) == 0:
+    print("No products found on the page.")
+    exit()  # Exit the script if no products are found
 
-# Convert the list of new data into a DataFrame
-new_df = pd.DataFrame(new_data)
+# Convert the list of product data into a DataFrame
+new_df = pd.DataFrame(product_data)
 
-# Create the filename based on the URL
-category_name = 'food-items'
-sub_category_name = 'instant-foods'
-filename = f'addisber.com({category_name},{sub_category_name}).csv'
+# Define the output file path
+output_path = 'web-scraping/ecommerce/addisber.com(food-items,instant-foods).csv'
 
-# Check if the output file already exists in the 'web-scraping/ecommerce/' directory
-output_path = f'web-scraping/ecommerce/{filename}'
+# Check if the directory exists, and if not, create it
+output_dir = os.path.dirname(output_path)
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)  # Create the directory if it doesn't exist
 
-# If the file exists, compare it with the new data
-if os.path.exists(output_path):
-    old_df = pd.read_csv(output_path)
-    # Compare the new data with the existing data
-    if not new_df.equals(old_df):
-        print("Website has updated, updating the output file.")
-        new_df.to_csv(output_path, index=False)
-    else:
-        print("No updates detected. The file remains the same.")
-else:
-    # If the file doesn't exist, create it
-    print("Creating new output file with scraped data.")
-    new_df.to_csv(output_path, index=False)
+# Save the data to a CSV file
+new_df.to_csv(output_path, index=False)
 
-print(f"Scraping completed. Data saved to {output_path}")
+print(f"Scraping completed and data saved to '{output_path}'")
