@@ -59,7 +59,7 @@ if len(product_data) == 0:
 df = pd.DataFrame(product_data)
 
 # Define the path for the output CSV file
-output_path = 'web-scraping/ecommerce/addisber_com_food_items_instant_foods.csv'
+output_path = 'web-scraping/ecommerce/addisber.com_food-items_instant-foods.csv'
 
 # Ensure the target directory exists, create it if it doesn't
 output_dir = os.path.dirname(output_path)
