@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-import os
 
 # URL of the page to scrape
 url = 'https://addisber.com/product-category/food-items/instant-foods/'
@@ -31,7 +30,7 @@ product_data = []
 
 # Loop through each product and extract details
 for product in products:
-    # Extract product title
+    # Extract product title (updated to <h3> tag)
     title_tag = product.find('h3', class_='woocommerce-loop-product__title')
     title = title_tag.text.strip() if title_tag else 'No title found'
     
@@ -56,17 +55,10 @@ if len(product_data) == 0:
     exit()  # Exit the script if no products are found
 
 # Convert the list of product data into a DataFrame
-new_df = pd.DataFrame(product_data)
+df = pd.DataFrame(product_data)
 
-# Define the output file path
-output_path = 'web-scraping/ecommerce/addisber.com(food-items,instant-foods).csv'
+# Save the data to a CSV file (updated to new path and file name)
+output_path = 'web-scraping/ecommerce/addisber.com_food-items_instant-foods.csv'
+df.to_csv(output_path, index=False)
 
-# Check if the directory exists, and if not, create it
-output_dir = os.path.dirname(output_path)
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)  # Create the directory if it doesn't exist
-
-# Save the data to a CSV file
-new_df.to_csv(output_path, index=False)
-
-print(f"Scraping completed and data saved to '{output_path}'")
+print("Scraping completed and data saved to 'web-scraping/ecommerce/addisber.com_food-items_instant-foods.csv'")
