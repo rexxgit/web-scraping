@@ -31,7 +31,7 @@ jobs:
 
       # Step 4: Run the scraping script located in /scripts/scrape1.py
       - name: Run scraping script
-        run: python scripts/scrape1.py  # Point to the correct script path
+        run: python web-scraping/scripts/scrape1.py  # Point to the correct script path
 
       # Step 5: Commit and push scraped data to the repository
       - name: Commit and push scraped data
