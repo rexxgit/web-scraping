@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+import os  # To ensure the output directory exists
 
 # URL of the page to scrape
 url = 'https://addisber.com/product-category/cosmetics/hair-care/'
@@ -50,8 +51,12 @@ for product in products:
 # Convert the list of product data into a DataFrame
 df = pd.DataFrame(data)
 
+# Ensure the output directory exists (GitHub Actions runs in a clean environment)
+output_dir = 'web-scraping/ecommerce/'
+os.makedirs(output_dir, exist_ok=True)
+
 # Save the data to a CSV file in the ecommerce folder
-output_path = 'web-scraping/ecommerce/addisber_cosmetics_hair_care.csv'
+output_path = os.path.join(output_dir, 'addisber_cosmetics_hair_care.csv')
 df.to_csv(output_path, index=False)
 
 print(f"Scraping completed and data saved to {output_path}")
