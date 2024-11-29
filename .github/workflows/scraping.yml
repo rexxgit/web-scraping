@@ -3,7 +3,7 @@ name: Web Scraping
 on:
   schedule:
     # This cron expression means "every day at 8:30 PM Ethiopian time (UTC +3)"
-    - cron: '30 17 * * *'
+    - cron: '20 18 * * *'
   workflow_dispatch:  # Allows manual triggering from GitHub UI
 
 permissions:
