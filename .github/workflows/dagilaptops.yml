@@ -27,7 +27,7 @@ jobs:
 
       - name: Run scraping script
         run: |
-          python3 scripts/scrape_dagi_laptops.py  # Run the laptops scraper script
+          python3 scripts/dagilaptops.py  # Run the laptops scraper script
 
       - name: Commit and push updated CSV file
         run: |
