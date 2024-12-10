@@ -1,4 +1,4 @@
-name: Addis Software
+name: Addis Software 1
 
 on:
   schedule:
@@ -23,24 +23,23 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install requests beautifulsoup4 pandas  # Install the necessary libraries
+          pip install requests beautifulsoup4 reportlab  # Install the necessary libraries
 
       - name: Run scraper script
         run: |
-          python3 scripts/Addis Software.py
-  # Run the scraper script
+          python3 "scripts/Addis_Software.py"
 
       - name: Commit and push scraped data
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          
+
           # Ensure the target directory exists
-          git add /website development companies in A.A/addis_software_structured.pdf
-          
+          git add "website development companies in A.A/addis_software_structured.pdf"
+
           # Commit the changes
           git commit -m "Update scraped data"
-          
+
           # Push the changes to the remote repo
           git push https://x-access-token:${{ secrets.MY_PAT }}@github.com/rexxgit/web-scraping.git
         env:
