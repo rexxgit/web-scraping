@@ -1,13 +1,9 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib.pagesizes import letter
-import os
-
-# Directory to save the PDF file
-output_dir = 'website development companies in A.A/'
-os.makedirs(output_dir, exist_ok=True)  # Ensure the directory exists
 
 # Scrape website data
 headers = {
@@ -47,6 +43,8 @@ for item in items:
     })
 
 # Save data to structured PDF
+output_dir = "website development companies in A.A"
+os.makedirs(output_dir, exist_ok=True)  # Ensure directory exists
 pdf_file = os.path.join(output_dir, "addis_software_structured.pdf")
 doc = SimpleDocTemplate(pdf_file, pagesize=letter)
 styles = getSampleStyleSheet()
