@@ -21,8 +21,12 @@ def scrape_static_website(base_url, output_folder="web-scraping/ecommerce", outp
 
     while True:
         print(f"Scraping page {page_number}...")
-        url = f"{base_url}{page_number}/?s&post_type=product&product_cat=educational-entertainment-items"  # Construct the URL for pagination
-        response = requests.get(url, headers=headers)  # Include the headers in the request
+        
+        # Construct the URL for the current page
+        url = f"https://addisber.com/page/{page_number}/?s&post_type=product&product_cat=educational-entertainment-items"
+        
+        # Make the request
+        response = requests.get(url, headers=headers)
         
         if response.status_code != 200:
             print(f"Failed to load page {page_number}. Status code: {response.status_code}")
@@ -57,7 +61,7 @@ def scrape_static_website(base_url, output_folder="web-scraping/ecommerce", outp
                 print(f"Error extracting item: {e}")
                 continue
 
-        # Check for the next page by looking for the next "a.page-numbers" that doesn't have the "current" class
+        # Check if there is a "next" page to scrape
         next_button = soup.select_one("a.page-numbers:not(.current)")
         if next_button and next_button.has_attr("href"):
             page_number += 1
@@ -96,5 +100,4 @@ def scrape_static_website(base_url, output_folder="web-scraping/ecommerce", outp
     print(f"Scraping completed successfully. Data saved to '{file_path}'.")
 
 # Example Usage:
-base_url = "https://addisber.com/page/1/?s&post_type=product&product_cat=educational-entertainment-items"
-scrape_static_website(base_url)
+scrape_static_website("https://addisber.com/page/")
