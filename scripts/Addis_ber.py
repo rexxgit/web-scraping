@@ -96,5 +96,5 @@ def scrape_static_website(base_url, output_folder="web-scraping/ecommerce", outp
     print(f"Scraping completed successfully. Data saved to '{file_path}'.")
 
 # Example Usage:
-base_url = "https://addisber.com/page/"
+base_url = "https://addisber.com/page/1/?s&post_type=product&product_cat=educational-entertainment-items"
 scrape_static_website(base_url)
