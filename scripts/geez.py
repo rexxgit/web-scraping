@@ -1,74 +1,89 @@
 import requests
-import pandas as pd
 from bs4 import BeautifulSoup
-import os
+import pandas as pd
+import os  # To handle directory creation
 
-# Function to scrape a page and extract product details
-def scrape_page(url):
-    response = requests.get(url)
+# Headers to simulate a real browser request (to avoid anti-scraping measures)
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+}
+
+# Base URL for pagination (adjust page parameter as necessary)
+base_url = 'https://geezshop.com/page/{page}/?product_cat=electronics&s&post_type=product&et_search=true'
+
+# List to store scraped data
+data = []
+
+# Path for the output CSV file
+output_path = 'web-scraping/ecommerce/geez_elco.csv'
+
+# Load existing data if the file exists
+existing_data = pd.read_csv(output_path) if os.path.exists(output_path) else pd.DataFrame()
+existing_titles = set(existing_data['title']) if not existing_data.empty else set()
+
+# Loop through the pages (adjust the range for more pages if necessary)
+for page in range(1, 6):  # Change the range to scrape more pages
+    url = base_url.format(page=page)
+    
+    # Send the HTTP request with headers
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  # Raise an exception for HTTP errors (4xx, 5xx)
+        print(f"Page {page} fetched successfully!")
+    except requests.exceptions.RequestException as e:
+        print(f"Failed to retrieve page {page}. Status code: {response.status_code} - {e}")
+        continue  # Skip this page and continue to the next one
+
+    # Parse the content of the page
     soup = BeautifulSoup(response.text, 'html.parser')
     
-    products = []
-    # Extract product title, price, and link
-    for product in soup.find_all('li', class_='product'):
-        title = product.find('h2', class_='product-title')
-        price = product.find('span', class_='price')
-        link = product.find('a', href=True)
-
-        if title and price and link:
-            products.append({
-                'title': title.get_text(strip=True),
-                'price': price.get_text(strip=True),
-                'link': link['href']
-            })
+    # Find all product containers
+    items = soup.find_all('div', class_='product-item')  # Update this if the class name changes
     
-    return products
-
-# Function to check for new data
-def check_for_new_data(products, output_path):
-    # Check if the CSV file exists
-    if os.path.exists(output_path) and os.stat(output_path).st_size > 0:
-        existing_data = pd.read_csv(output_path)
-        existing_titles = set(existing_data['title'])
-    else:
-        existing_data = pd.DataFrame(columns=['title', 'price', 'link', 'status'])
-        existing_titles = set()
-
-    # Compare new products with existing ones
-    new_data = []
-    for product in products:
-        if product['title'] not in existing_titles:
-            new_data.append({**product, 'status': 'new'})
-        else:
-            new_data.append({**product, 'status': 'existing'})
-    
-    # Convert new data to a DataFrame
-    new_df = pd.DataFrame(new_data)
-    
-    return new_df
-
-# Function to save data to CSV
-def save_data(products, output_path):
-    # If file exists, append new data; otherwise, create the file
-    if os.path.exists(output_path) and os.stat(output_path).st_size > 0:
-        products.to_csv(output_path, mode='a', header=False, index=False)
-    else:
-        products.to_csv(output_path, mode='w', header=True, index=False)
-
-# Main function to scrape multiple pages and save data
-def scrape_and_save(start_page, end_page, output_path):
-    for page_num in range(start_page, end_page + 1):
-        url = f'https://geezshop.com/page/{page_num}/?product_cat=electronics&s&post_type=product&et_search=true'
-        print(f'Scraping page {page_num}...')
+    # Loop through each product and extract details
+    for item in items:
+        # Extract title
+        title_tag = item.find('h2', class_='product-title')
+        title = title_tag.get_text(strip=True) if title_tag else 'No title found'
         
-        # Scrape the page and get the product data
-        products = scrape_page(url)
-        new_data_df = check_for_new_data(products, output_path)
+        # Extract price
+        price_tag = item.find('span', class_='price')
+        price = price_tag.get_text(strip=True) if price_tag else 'No price found'
         
-        # Save the new data to the CSV
-        save_data(new_data_df, output_path)
-        print(f'Saved data from page {page_num}.')
+        # Extract product link
+        link_tag = item.find('a', href=True)
+        link = link_tag['href'] if link_tag else 'No link found'
+        
+        # Check if this product is already in the existing data
+        highlight = 'new' if title not in existing_titles else 'existing'
+        
+        # Append data to the list
+        data.append({
+            'title': title,
+            'price': price,
+            'link': link,
+            'highlight': highlight
+        })
 
-# Example usage: scrape pages 2 to 5 and save to 'geez_elco.csv' in the specified path
-output_path = 'web-scraping/ecommerce/geez_elco.csv'
-scrape_and_save(2, 5, output_path)
+# Check if data was extracted before proceeding
+if len(data) == 0:
+    print("No products found on the page.")
+    exit()  # Exit the script if no products are found
+
+# Convert the list of data into a DataFrame
+df = pd.DataFrame(data)
+
+# Ensure the target directory exists
+output_dir = os.path.dirname(output_path)
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
+
+# Save the data to a CSV file, keeping existing data and adding new
+if not existing_data.empty:
+    # Merge new data with existing data, ensuring no duplicate titles
+    df = pd.concat([existing_data, df]).drop_duplicates(subset=['title'], keep='last')
+
+# Save to CSV
+df.to_csv(output_path, index=False)
+
+print(f"Scraping completed and data saved to '{output_path}'")
