@@ -4,25 +4,15 @@ import pandas as pd
 import os
 
 def scrape_static_website():
-    base_url = "https://addisber.com/product-category/food-items/beverage/page/"  # Replace with your target URL
+    base_url = "https://addisber.com/product-category/food-items/beverage/page/1/"  # Replace with your target URL
     page_number = 1
 
-    # Define the output CSV file path
-    csv_file = "Addis_ber.csv"
-
-    # Load existing data if available
-    if os.path.exists(csv_file):
-        existing_data = pd.read_csv(csv_file)
-        existing_links = set(existing_data['link'])
-    else:
-        existing_data = pd.DataFrame()
-        existing_links = set()
-
+    # Initialize an empty DataFrame to hold the scraped data
     data = []
 
     while True:
         print(f"Scraping page {page_number}...")
-        url = f"{base_url}{page_number}/"
+        url = f"{base_url}{page_number}"
         response = requests.get(url)
         
         # Check if the page is accessible
@@ -33,7 +23,7 @@ def scrape_static_website():
         soup = BeautifulSoup(response.content, "html.parser")
 
         # Extract items (adjust selectors as needed)
-        items = soup.select("div.product-inner")  # Adjust the selector based on your site
+        items = soup.select("div.product-inner")  # Replace with the appropriate selector for your target website
 
         if not items:
             print("No more items found. Ending scraping.")
@@ -50,11 +40,6 @@ def scrape_static_website():
                 price = price_elem.get_text(strip=True) if price_elem else "No price"
                 link = link_elem["href"] if link_elem and link_elem.has_attr("href") else "No link"
 
-                # Skip duplicates
-                if link in existing_links:
-                    continue
-
-                # Add the data to our list
                 data.append({
                     "title": title,
                     "price": price,
@@ -64,8 +49,8 @@ def scrape_static_website():
                 print(f"Error extracting item: {e}")
                 continue
 
-        # Check for the next page (adjust selector for your site)
-        next_button = soup.select_one("a.next.page-numbers")  # Adjust selector for pagination link
+        # Check for the next page
+        next_button = soup.select_one("a.next.page-numbers")  # Adjust selector for your site
         if next_button and next_button.has_attr("href"):
             page_number += 1
         else:
@@ -75,21 +60,22 @@ def scrape_static_website():
     # Convert new data to DataFrame
     new_data = pd.DataFrame(data)
 
-    # Merge new and existing data to avoid duplicates based on the 'link'
-    if not new_data.empty:
-        if not existing_data.empty:
-            merged_data = pd.concat([existing_data, new_data]).drop_duplicates(subset=["link"], keep="last")
-            updates = merged_data[~merged_data["link"].isin(existing_links)]
-            print(f"Updates found: {len(updates)} new items added.")
-        else:
-            merged_data = new_data
-            updates = new_data
+    # If the CSV file exists, load it and append new data
+    ecommerce_folder = "web-scraping/ecommerce"  # Path to the ecommerce folder
+    file_path = os.path.join(ecommerce_folder, "Addis_ber.csv")
+    
+    # Create the ecommerce folder if it doesn't exist
+    if not os.path.exists(ecommerce_folder):
+        os.makedirs(ecommerce_folder)
 
-        # Save merged data to CSV
-        merged_data.to_csv(csv_file, index=False)
-        print(f"Scraping completed successfully. {len(updates)} new items added. Data saved to '{csv_file}'.")
+    if os.path.exists(file_path):
+        existing_data = pd.read_csv(file_path)
+        merged_data = pd.concat([existing_data, new_data]).drop_duplicates(subset=["link"], keep="last")
     else:
-        print("No new data found. Existing file remains unchanged.")
+        merged_data = new_data
 
-# Start scraping
+    # Save the merged data to CSV
+    merged_data.to_csv(file_path, index=False)
+    print(f"Scraping completed successfully. {len(new_data)} new items added. Data saved to '{file_path}'.")
+
 scrape_static_website()
