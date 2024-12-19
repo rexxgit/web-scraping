@@ -1,78 +1,86 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-import os
+import os  # To handle directory creation
 
-def scrape_static_site(base_url, output_file, start_page=1, max_pages=10):
-    """
-    Scrapes a static website for product data, handles pagination,
-    and identifies new data compared to existing data.
+# Headers to simulate a real browser request (to avoid anti-scraping measures)
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+}
 
-    :param base_url: Base URL for the website with pagination parameter.
-    :param output_file: Path to save the scraped data.
-    :param start_page: Starting page number for scraping.
-    :param max_pages: Maximum number of pages to scrape.
-    """
-    # Load existing data if the file exists
-    existing_data = pd.read_csv(output_file) if os.path.exists(output_file) else pd.DataFrame()
-    existing_links = set(existing_data['link']) if not existing_data.empty else set()
+# Base URL for pagination (adjust page parameter as necessary)
+base_url = 'https://helloomarket.com/index.php?route=product/category&path=99_86&page={page}'
 
-    data = []
+# List to store scraped data
+data = []
 
-    for page in range(start_page, max_pages + 1):
-        print(f"Scraping page {page}...")
-        url = f"{base_url}&page={page}"
-        response = requests.get(url)
-        if response.status_code != 200:
-            print(f"Failed to retrieve page {page}. Skipping...")
-            continue
+# Path for the output CSV file
+output_path = 'web-scraping/ecommerce/hellomarketyes.csv'
 
-        soup = BeautifulSoup(response.content, 'html.parser')
-        products = soup.select('div.class="product-layout product-grid col-lg-4 col-md-4 col-sm-6 col-xs-12"')  # Adjust this selector to match the website structure
+# Load existing data if the file exists
+existing_data = pd.read_csv(output_path) if os.path.exists(output_path) else pd.DataFrame()
+existing_titles = set(existing_data['title']) if not existing_data.empty else set()
 
-        if not products:
-            print(f"No products found on page {page}. Stopping...")
-            break
+# Loop through the pages
+for page in range(1, 10):  # Change the range for more pages if necessary
+    url = base_url.format(page=page)
+    
+    # Send the HTTP request with headers
+    try:
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  # Raise an exception for HTTP errors (4xx, 5xx)
+        print(f"Page {page} fetched successfully!")
+    except requests.exceptions.RequestException as e:
+        print(f"Failed to retrieve page {page}. Status code: {response.status_code} - {e}")
+        continue  # Skip this page and continue to the next one
 
-        for product in products:
-            try:
-                # Extract product details (adjust selectors based on website structure)
-                title = product.select_one('p.desc').text.strip() if product.select_one('h4 a') else "No title"
-                price = product.select_one('p.price').text.strip() if product.select_one('p.price') else "No price"
-                link = product.select_one('h4 a')['href'] if product.select_one('h4 a') else "No link"
+    # Parse the content of the page
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    # Find all product containers
+    items = soup.find_all('div', class_='product-layout product-list col-xs-12')
+    
+    # Loop through each product and extract details
+    for item in items:
+        # Extract title
+        title = item.find('a', href=True)['href'] if item.find('a', href=True) else 'No title found'
+        
+        # Extract price
+        price = item.find('p', class_='price').get_text(strip=True) if item.find('p', class_='price') else 'No price found'
+        
+        # Extract description
+        description = item.find('p', class_='desc').get_text(strip=True) if item.find('p', class_='desc') else 'No description found'
+        
+        # Check if this product is already in the existing data
+        highlight = 'new' if title not in existing_titles else 'existing'
+        
+        # Append data to the list
+        data.append({
+            'title': title,
+            'price': price,
+            'description': description,
+            'highlight': highlight
+        })
 
-                # Skip if the link already exists in the dataset
-                if link in existing_links:
-                    continue
+# Check if data was extracted before proceeding
+if len(data) == 0:
+    print("No products found on the page.")
+    exit()  # Exit the script if no products are found
 
-                data.append({'title': title, 'price': price, 'link': link})
-            except Exception as e:
-                print(f"Error processing a product: {e}")
-                continue
+# Convert the list of data into a DataFrame
+df = pd.DataFrame(data)
 
-    # Convert new data to DataFrame
-    new_data = pd.DataFrame(data)
+# Ensure the target directory exists
+output_dir = os.path.dirname(output_path)
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
 
-    # Combine new data with existing data, avoiding duplicates
-    if not new_data.empty:
-        if not existing_data.empty:
-            combined_data = pd.concat([existing_data, new_data]).drop_duplicates(subset=['link'], keep='last')
-        else:
-            combined_data = new_data
+# Save the data to a CSV file, keeping existing data and adding new
+if not existing_data.empty:
+    # Merge new data with existing data
+    df = pd.concat([existing_data, df]).drop_duplicates(subset=['title'], keep='last')
 
-        # Save combined data to the output file
-        combined_data.to_csv(output_file, index=False)
+# Save to CSV
+df.to_csv(output_path, index=False)
 
-        # Highlight new entries
-        new_entries = new_data[~new_data['link'].isin(existing_links)]
-        print(f"Scraping completed. {len(new_entries)} new items found and added to {output_file}.")
-    else:
-        print("No new data found. Existing file remains unchanged.")
-
-# Run the scraper
-scrape_static_site(
-    base_url="https://helloomarket.com/index.php?route=product/category&path=99_86",
-    output_file="web-scraping/ecommerce/helloomarket_products.csv",
-    start_page=1,
-    max_pages=10
-)
+print(f"Scraping completed and data saved to '{output_path}'")
