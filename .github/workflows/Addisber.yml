@@ -1,4 +1,4 @@
-name: Addis Ber
+name: Addis Ber Entertiment items.
 
 on:
   schedule:
@@ -26,20 +26,14 @@ jobs:
 
       - name: Run scraper script
         run: |
-          python3 scripts/Addis_ber.py  # Ensure your script creates Addis_ber.csv in the ecommerce folder
+          python3 scripts/Addis_ber.py
 
       - name: Commit and push scraped data
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          
-          # Check if the file was created/modified
-          if git diff --exit-code --quiet; then
-            echo "No changes to commit."
-          else
-            git add web-scraping/ecommerce/Addis_ber.csv  # Add the file from the ecommerce folder
-            git commit -m "Update scraped data"
-            git push https://x-access-token:${{ secrets.MY_PAT }}@github.com/rexxgit/web-scraping.git
-          fi
+          git add web-scraping/ecommerce/Addisber_educational-entertainment-items.csv
+          git commit -m "Update scraped data"
+          git push https://x-access-token:${{ secrets.MY_PAT }}@github.com/rexxgit/web-scraping.git
         env:
           MY_PAT: ${{ secrets.MY_PAT }}
