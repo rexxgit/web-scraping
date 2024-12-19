@@ -17,11 +17,6 @@ data = []
 # Path for the output CSV file
 output_path = 'web-scraping/ecommerce/geez_elco.csv'
 
-# Ensure the target directory exists
-output_dir = os.path.dirname(output_path)
-if not os.path.exists(output_dir):
-    os.makedirs(output_dir)
-
 # Load existing data if the file exists
 existing_data = pd.read_csv(output_path) if os.path.exists(output_path) else pd.DataFrame()
 existing_titles = set(existing_data['title']) if not existing_data.empty else set()
@@ -77,6 +72,11 @@ if len(data) == 0:
 
 # Convert the list of data into a DataFrame
 df = pd.DataFrame(data)
+
+# Ensure the target directory exists
+output_dir = os.path.dirname(output_path)
+if not os.path.exists(output_dir):
+    os.makedirs(output_dir)
 
 # Save the data to a CSV file, keeping existing data and adding new
 if not existing_data.empty:
