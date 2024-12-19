@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import os
 
-def scrape_static_website(base_url, output_folder="web-scraping/ecommerce", output_file="Addisber_educational-entertainment-items.csv"):
+def scrape_static_website(base_url, category="educational-entertainment-items", output_folder="web-scraping/ecommerce", output_file="Addisber_educational-entertainment-items.csv"):
     page_number = 1
     data = []
 
@@ -22,8 +22,8 @@ def scrape_static_website(base_url, output_folder="web-scraping/ecommerce", outp
     while True:
         print(f"Scraping page {page_number}...")
         
-        # Construct the URL for the current page
-        url = f"https://addisber.com/page/{page_number}/?s&post_type=product&product_cat=educational-entertainment-items"
+        # Construct the URL for the current page with category and page number
+        url = f"https://addisber.com/page/{page_number}/?s&post_type=product&product_cat={category}"
         
         # Make the request
         response = requests.get(url, headers=headers)
@@ -100,4 +100,4 @@ def scrape_static_website(base_url, output_folder="web-scraping/ecommerce", outp
     print(f"Scraping completed successfully. Data saved to '{file_path}'.")
 
 # Example Usage:
-scrape_static_website("https://addisber.com/page/")
+scrape_static_website("https://addisber.com/page/", category="educational-entertainment-items")
