@@ -9,12 +9,12 @@ def create_output_directory(output_path):
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
 
-# Function to scrape data
+# Function to scrape data from a single page
 async def scrape_page(page, url):
     # Navigate to the URL
     await page.goto(url)
     
-    # Wait for the products to load
+    # Wait for the products to load (adjust selector based on actual site)
     await page.wait_for_selector('div.product-layout')  # Update this selector as needed
     
     # Get product data from the page
@@ -23,6 +23,7 @@ async def scrape_page(page, url):
     scraped_data = []
     
     for product in products:
+        # Scraping the details (title, price, description, location, and link)
         title = await product.query_selector('span.listingtitle')
         price = await product.query_selector('span.price')
         description = await product.query_selector('div.smalldesc')
@@ -47,16 +48,12 @@ async def scrape_page(page, url):
     
     return scraped_data
 
-# Main function to scrape multiple pages
-async def main():
-    # Base URL for the website
-    base_url = 'https://engocha.com/mobile-phones?page={page}'  # Adjust to your actual URL
-    output_path = 'web-scraping/ecommerce/engochascraped_data.csv'
-    
+# Function to scrape multiple pages and handle pagination
+async def scrape_website(base_url, output_path, pages=5):
     # Create the output directory if it doesn't exist
     create_output_directory(output_path)
 
-    # Initialize Playwright
+    # Initialize Playwright and the browser
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)  # Set to False for debugging
         page = await browser.new_page()
@@ -69,9 +66,9 @@ async def main():
             existing_titles = set()
 
         new_data = []
-        
-        # Loop through pages
-        for page_number in range(1, 15):  # Scrape 5 pages, adjust as necessary
+
+        # Loop through the pages
+        for page_number in range(1, pages + 1):  # Adjust for more pages
             print(f"Scraping page {page_number}...")
             url = base_url.format(page=page_number)
             page_data = await scrape_page(page, url)
@@ -84,10 +81,10 @@ async def main():
                 else:
                     product['highlight'] = 'Existing'  # Mark existing data
 
-        # Combine new data with the old data if available
+        # Combine new data with existing data if available
         all_data = pd.DataFrame(new_data)
 
-        # If there’s existing data, combine it with the new data
+        # If there's existing data, combine it with the new data
         if os.path.exists(output_path):
             existing_data = pd.read_csv(output_path)
             all_data = pd.concat([existing_data, all_data]).drop_duplicates(subset=['title'])
@@ -99,6 +96,9 @@ async def main():
         # Close the browser
         await browser.close()
 
-# Ensure the script is run directly
-if __name__ == "__main__":
-    asyncio.run(main())
+# Example usage for scraping with given base URL and output path
+base_url = 'https://engocha.com/mobile-phones?page={page}'  # Replace with actual URL
+output_path = 'web-scraping/ecommerce/engochascraped_data.csv'
+
+# Run the scraper asynchronously (ensure to use an async event loop)
+asyncio.run(scrape_website(base_url, output_path, pages=5))  # Scrape 5 pages
