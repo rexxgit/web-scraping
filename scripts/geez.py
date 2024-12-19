@@ -26,8 +26,8 @@ def scrape_page(url):
 
 # Function to check for new data
 def check_for_new_data(products, output_path):
-    # Load existing data if CSV file exists
-    if os.path.exists(output_path):
+    # Check if the CSV file exists
+    if os.path.exists(output_path) and os.stat(output_path).st_size > 0:
         existing_data = pd.read_csv(output_path)
         existing_titles = set(existing_data['title'])
     else:
@@ -50,7 +50,7 @@ def check_for_new_data(products, output_path):
 # Function to save data to CSV
 def save_data(products, output_path):
     # If file exists, append new data; otherwise, create the file
-    if os.path.exists(output_path):
+    if os.path.exists(output_path) and os.stat(output_path).st_size > 0:
         products.to_csv(output_path, mode='a', header=False, index=False)
     else:
         products.to_csv(output_path, mode='w', header=True, index=False)
