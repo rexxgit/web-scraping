@@ -41,7 +41,7 @@ def scrape_static_website(base_url, output_folder="web-scraping/ecommerce", outp
             try:
                 # Extract data
                 title_elem = item.select_one("h3.woocommerce-loop-product__title")
-                price_elem = item.select_one("small.woocommerce-price-suffix")
+                price_elem = item.select_one("span.price")
                 link_elem = item.select_one("a")
 
                 title = title_elem.get_text(strip=True) if title_elem else "No title"
