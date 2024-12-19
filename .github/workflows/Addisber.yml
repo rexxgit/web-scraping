@@ -26,7 +26,7 @@ jobs:
 
       - name: Run scraper script
         run: |
-          python3 scripts/Addis_ber.py  # Ensure your script creates Addis_ber.csv
+          python3 scripts/Addis_ber.py  # Ensure your script creates Addis_ber.csv in the ecommerce folder
 
       - name: Commit and push scraped data
         run: |
@@ -37,7 +37,7 @@ jobs:
           if git diff --exit-code --quiet; then
             echo "No changes to commit."
           else
-            git add Addis_ber.csv
+            git add web-scraping/ecommerce/Addis_ber.csv  # Add the file from the ecommerce folder
             git commit -m "Update scraped data"
             git push https://x-access-token:${{ secrets.MY_PAT }}@github.com/rexxgit/web-scraping.git
           fi
