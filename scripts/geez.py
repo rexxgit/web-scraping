@@ -15,7 +15,7 @@ base_url = 'https://geezshop.com/page/{page}/?product_cat=electronics&s&post_typ
 data = []
 
 # Path for the output CSV file
-output_path = 'web-scraping/ecommerce/geez_elco.csv'
+output_path = 'web-scraping/ecommerce/geez_product.csv'
 
 # Load existing data if the file exists
 existing_data = pd.read_csv(output_path) if os.path.exists(output_path) else pd.DataFrame()
