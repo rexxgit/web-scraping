@@ -6,7 +6,6 @@ import pandas as pd
 # Base URL for pagination (adjust for your site)
 base_url = 'https://engocha.com/classifieds/38-mens-shoes/condition_all/brand_NIKE/city_all/minprice_zr/maxprice_in/currency_df?page={}'
 
-
 # Headers to simulate a browser request
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
