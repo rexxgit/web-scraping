@@ -1,11 +1,16 @@
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
-import os  # To handle directory creation
+import os
+import time  # To handle delays between requests
 
 # Headers to simulate a real browser request (to avoid anti-scraping measures)
 headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+    'Referer': 'https://engocha.com/',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Connection': 'keep-alive'
 }
 
 # Base URL for pagination (adjust page parameter as necessary)
@@ -15,7 +20,7 @@ base_url = 'https://engocha.com/mobile-phones?page={page}'
 data = []
 
 # File path for the output CSV
-output_path = 'web-scraping/ecommerce/engocha_mobiles.csv'
+output_path = 'web-scraping/ecommerce/engocha_phones.csv'
 
 # Check if the file exists to load existing data
 if os.path.exists(output_path):
@@ -26,7 +31,7 @@ else:
     existing_links = set()
 
 # Loop through the pages
-for page in range(1, 2):  # Change the range for more pages if necessary
+for page in range(1, 15):  # Change the range for more pages if necessary
     url = base_url.format(page=page)
     
     # Send the HTTP request with headers
@@ -35,14 +40,17 @@ for page in range(1, 2):  # Change the range for more pages if necessary
         response.raise_for_status()  # Raise an exception for HTTP errors (4xx, 5xx)
         print(f"Page {page} fetched successfully!")
     except requests.exceptions.RequestException as e:
-        print(f"Failed to retrieve page {page}. Status code: {response.status_code} - {e}")
+        if response.status_code == 403:
+            print(f"Access to page {page} is forbidden (403). Skipping page.")
+        else:
+            print(f"Failed to retrieve page {page}. Status code: {response.status_code} - {e}")
         continue  # Skip this page and continue to the next one
 
     # Parse the content of the page
     soup = BeautifulSoup(response.text, 'html.parser')
     
-    # Find all product containers
-    items = soup.find_all('div', class_='product-layout product-list col-xs-12')
+    # Find all product containers (adjust selector if necessary)
+    items = soup.find_all('div', class_='col-md-12 listingcolumn')
 
     # Loop through each product and extract details
     for item in items:
@@ -77,6 +85,9 @@ for page in range(1, 2):  # Change the range for more pages if necessary
             'link': link,  # Include link in the data
             'highlight': highlight  # Add highlight (new or existing)
         })
+
+    # Sleep to avoid being flagged as a bot (add a delay between requests)
+    time.sleep(2)
 
 # Check if data was extracted before proceeding
 if len(data) == 0:
