@@ -3,19 +3,27 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import os
 
-def scrape_static_website():
-    base_url = "https://addisber.com/product-category/food-items/beverage/page/1/"  # Replace with your target URL
+def scrape_static_website(base_url, output_folder="web-scraping/ecommerce", output_file="Addisber_educational-entertainment-items.csv"):
     page_number = 1
-
-    # Initialize an empty DataFrame to hold the scraped data
     data = []
+
+    # Create the output folder if it doesn't exist
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    # Define the file path where the data will be saved
+    file_path = os.path.join(output_folder, output_file)
+
+    # Define the headers with a user-agent
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+    }
 
     while True:
         print(f"Scraping page {page_number}...")
-        url = f"{base_url}{page_number}"
-        response = requests.get(url)
+        url = f"{base_url}{page_number}/?s&post_type=product&product_cat=educational-entertainment-items"  # Construct the URL for pagination
+        response = requests.get(url, headers=headers)  # Include the headers in the request
         
-        # Check if the page is accessible
         if response.status_code != 200:
             print(f"Failed to load page {page_number}. Status code: {response.status_code}")
             break
@@ -49,8 +57,8 @@ def scrape_static_website():
                 print(f"Error extracting item: {e}")
                 continue
 
-        # Check for the next page
-        next_button = soup.select_one("a.next.page-numbers")  # Adjust selector for your site
+        # Check for the next page by looking for the next "a.page-numbers" that doesn't have the "current" class
+        next_button = soup.select_one("a.page-numbers:not(.current)")
         if next_button and next_button.has_attr("href"):
             page_number += 1
         else:
@@ -61,21 +69,32 @@ def scrape_static_website():
     new_data = pd.DataFrame(data)
 
     # If the CSV file exists, load it and append new data
-    ecommerce_folder = "web-scraping/ecommerce"  # Path to the ecommerce folder
-    file_path = os.path.join(ecommerce_folder, "Addis_ber.csv")
-    
-    # Create the ecommerce folder if it doesn't exist
-    if not os.path.exists(ecommerce_folder):
-        os.makedirs(ecommerce_folder)
-
     if os.path.exists(file_path):
         existing_data = pd.read_csv(file_path)
+        
+        # Merge new data with existing data
         merged_data = pd.concat([existing_data, new_data]).drop_duplicates(subset=["link"], keep="last")
+
+        # Identify new entries
+        new_entries = merged_data[~merged_data["link"].isin(existing_data["link"])]
+        
+        # Classify new or existing items
+        merged_data['status'] = merged_data['link'].apply(lambda x: 'new' if x in new_entries['link'].values else 'existing')
+
+        if not new_entries.empty:
+            print(f"New data added: {len(new_entries)} items.")
+        else:
+            print("No new items found.")
+        
     else:
         merged_data = new_data
+        merged_data['status'] = 'new'  # Mark all as new since it's the first scrape
+        print(f"First-time scraping. {len(new_data)} items saved.")
 
     # Save the merged data to CSV
     merged_data.to_csv(file_path, index=False)
-    print(f"Scraping completed successfully. {len(new_data)} new items added. Data saved to '{file_path}'.")
+    print(f"Scraping completed successfully. Data saved to '{file_path}'.")
 
-scrape_static_website()
+# Example Usage:
+base_url = "https://addisber.com/page/"
+scrape_static_website(base_url)
