@@ -99,5 +99,6 @@ async def main():
         # Close the browser
         await browser.close()
 
-# Run the scraping function
-asyncio.run(main())
+# Ensure the script is run directly
+if __name__ == "__main__":
+    asyncio.run(main())
