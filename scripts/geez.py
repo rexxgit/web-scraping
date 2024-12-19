@@ -22,7 +22,7 @@ existing_data = pd.read_csv(output_path) if os.path.exists(output_path) else pd.
 existing_titles = set(existing_data['title']) if not existing_data.empty else set()
 
 # Loop through the pages (adjust the range for more pages if necessary)
-for page in range(1, 6):  # Change the range to scrape more pages
+for page in range(1, 2):  # Change the range to scrape more pages
     url = base_url.format(page=page)
     
     # Send the HTTP request with headers
