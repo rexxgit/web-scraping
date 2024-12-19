@@ -1,104 +1,121 @@
 import os
+import requests
+from bs4 import BeautifulSoup
 import pandas as pd
-import asyncio
-from playwright.async_api import async_playwright
 
-# Helper function to create the directory if it doesn't exist
-def create_output_directory(output_path):
-    output_dir = os.path.dirname(output_path)
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+# Base URL for pagination (adjust for your site)
+base_url = 'https://engocha.com/classifieds/38-mens-shoes/condition_all/brand_NIKE/city_all/minprice_zr/maxprice_in/currency_df?page={}'
 
-# Function to scrape data from a single page
-async def scrape_page(page, url):
-    # Navigate to the URL
-    await page.goto(url)
-    
-    # Wait for the products to load (adjust selector based on actual site)
-    await page.wait_for_selector('div.product-layout')  # Update this selector as needed
-    
-    # Get product data from the page
-    products = await page.query_selector_all('div.product-layout')
-    
-    scraped_data = []
-    
-    for product in products:
-        # Scraping the details (title, price, description, location, and link)
-        title = await product.query_selector('span.listingtitle')
-        price = await product.query_selector('span.price')
-        description = await product.query_selector('div.smalldesc')
-        location = await product.query_selector('span.location')
-        link = await product.query_selector('a')
 
-        # Extract the text or href
-        title = await title.inner_text() if title else 'No title'
-        price = await price.inner_text() if price else 'No price'
-        description = await description.inner_text() if description else 'No description'
-        location = await location.inner_text() if location else 'No location'
-        link = await link.get_attribute('href') if link else 'No link'
+# Headers to simulate a browser request
+headers = {
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
+}
 
-        # Append to the data list
-        scraped_data.append({
+# Output path for the CSV file
+output_path = 'web-scraping/ecommerce/engocha.csv'
+
+# Check if the file exists already
+if os.path.exists(output_path):
+    existing_df = pd.read_csv(output_path)
+else:
+    existing_df = pd.DataFrame()
+
+# List to store the product data
+product_data = []
+
+# Starting page for scraping
+page = 1
+
+# Function to get text from a tag
+def get_text(tag):
+    if tag:
+        return tag.get_text(strip=True)
+    return 'No data found'
+
+# Start scraping with pagination
+while True:
+    print(f"\nFetching page {page}...")
+    url = base_url.format(page)
+    response = requests.get(url, headers=headers)
+
+    # Check if the page is successfully fetched
+    if response.status_code != 200:
+        print(f"Failed to retrieve page {page}. Status code: {response.status_code}")
+        break
+
+    # Parse the content using BeautifulSoup
+    soup = BeautifulSoup(response.text, 'html.parser')
+
+    # Use CSS selector to target the main container
+    main_container = soup.find('div', id='listingslist')  # Replace with your specific container ID if needed
+
+    # Print the entire main container to check its structure
+    if main_container:
+        print("\nMain container HTML:\n", main_container)  # No prettify(), raw HTML will be printed
+    else:
+        print("Main container not found. Exiting...")
+        break
+
+    # Find all individual product containers inside the main container
+    products = main_container.find_all('div', class_='listingcolumn')
+
+    # If no products are found, exit pagination
+    if not products:
+        print("No products found on this page. Stopping pagination.")
+        break
+
+    # Loop through each product and extract details
+    for index, product in enumerate(products, start=1):
+        print(f"\nHTML for product {index} on page {page}:\n")
+        print(product)  # Raw HTML for each product
+
+        # Extract the product title, price, location, and link
+        title_tag = product.find('span', class_='listingtitle')
+        title = get_text(title_tag)
+
+        price_tag = product.find('span', class_='price')
+        price = get_text(price_tag)
+
+        location_tag = product.find('span', class_='location')
+        location = get_text(location_tag)
+
+        # Extract the product link
+        link_tag = product.find('a', href=True)
+        link = link_tag['href'] if link_tag else 'No link found'
+
+        # Append the extracted data to the list
+        product_data.append({
             'title': title,
             'price': price,
-            'description': description,
             'location': location,
             'link': link
         })
+
+    # Move to the next page
+    page += 1
+
+# Convert the collected data into a DataFrame
+new_df = pd.DataFrame(product_data)
+
+# Check for new and existing data
+if not existing_df.empty:
+    # Combine the existing data with the new data and remove duplicates
+    combined_df = pd.concat([existing_df, new_df]).drop_duplicates(subset=['title', 'price', 'location', 'link'], keep='last')
     
-    return scraped_data
+    # Highlight new and existing data
+    new_entries = new_df[~new_df['title'].isin(existing_df['title'])]
+    if not new_entries.empty:
+        print("\nNew data entries found:")
+        print(new_entries)
 
-# Function to scrape multiple pages and handle pagination
-async def scrape_website(base_url, output_path, pages=5):
-    # Create the output directory if it doesn't exist
-    create_output_directory(output_path)
+    # Append new data entries to the CSV
+    combined_df.to_csv(output_path, index=False)
+    print(f"\nNew data saved to {output_path}")
+else:
+    # Save the new data directly to the CSV file if no existing data
+    new_df.to_csv(output_path, index=False)
+    print(f"\nData saved to {output_path}")
 
-    # Initialize Playwright and the browser
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)  # Set to False for debugging
-        page = await browser.new_page()
-        
-        # Track previously scraped titles to identify new data
-        if os.path.exists(output_path):
-            existing_data = pd.read_csv(output_path)
-            existing_titles = set(existing_data['title'])
-        else:
-            existing_titles = set()
-
-        new_data = []
-
-        # Loop through the pages
-        for page_number in range(1, pages + 1):  # Adjust for more pages
-            print(f"Scraping page {page_number}...")
-            url = base_url.format(page=page_number)
-            page_data = await scrape_page(page, url)
-
-            # Identify new and existing data
-            for product in page_data:
-                if product['title'] not in existing_titles:
-                    product['highlight'] = 'New'  # Mark new data
-                    new_data.append(product)
-                else:
-                    product['highlight'] = 'Existing'  # Mark existing data
-
-        # Combine new data with existing data if available
-        all_data = pd.DataFrame(new_data)
-
-        # If there's existing data, combine it with the new data
-        if os.path.exists(output_path):
-            existing_data = pd.read_csv(output_path)
-            all_data = pd.concat([existing_data, all_data]).drop_duplicates(subset=['title'])
-
-        # Save the updated data
-        all_data.to_csv(output_path, index=False)
-        print(f"Scraping completed. Data saved to '{output_path}'")
-
-        # Close the browser
-        await browser.close()
-
-# Example usage for scraping with given base URL and output path
-base_url = 'https://engocha.com/mobile-phones?page={page}'  # Replace with actual URL
-output_path = 'web-scraping/ecommerce/engochascraped_data.csv'
-
-# Run the scraper asynchronously (ensure to use an async event loop)
-asyncio.run(scrape_website(base_url, output_path, pages=5))  # Scrape 5 pages
+# Print a confirmation message
+print("\nScraping completed and data saved.")
