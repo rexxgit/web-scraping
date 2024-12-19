@@ -32,7 +32,7 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add /ecommerce
+          git add /web-scraping/ecommerce/
           git commit -m "Update scraped data"
           git push https://x-access-token:${{ secrets.MY_PAT }}@github.com/rexxgit/web-scraping.git
         env:
