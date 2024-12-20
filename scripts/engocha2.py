@@ -4,7 +4,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 
 # Base URL for pagination
-base_url = 'https://engocha.com/classifieds/38-mens-shoes/condition_all/brand_NIKE/city_all/minprice_zr/maxprice_in/currency_df?page={}'
+base_url = 'https://engocha.com/classifieds/34-laptops/condition_all/brand_HP/city_all/minprice_zr/maxprice_in/currency_df?page={}'
 
 # Headers to simulate a browser request
 headers = {
