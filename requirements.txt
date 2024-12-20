@@ -4,3 +4,4 @@ pandas
 pygithub
 playwright
 reportlab
+fake-useragent
