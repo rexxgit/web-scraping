@@ -5,7 +5,7 @@ import os
 
 def scrape_page(url):
     # Define the output directory
-    output_dir = 'web-scraping/ecommerce/car2.csv'
+    output_dir = 'web-scraping/ecommerce/mekina.csv'
     
     # Create the output directory if it doesn't exist
     if not os.path.exists(output_dir):
