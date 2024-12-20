@@ -4,10 +4,9 @@ import pandas as pd
 import os
 
 def scrape_page(url):
-    # Define the output directory and file path
-    output_dir = 'web-scraping/ecommerce/car.csv'
-    output_file = os.path.join(output_dir, 'car.csv')
-
+    # Define the output directory
+    output_dir = 'web-scraping/ecommerce/car2.csv'
+    
     # Create the output directory if it doesn't exist
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
@@ -65,9 +64,10 @@ def scrape_page(url):
         new_df = pd.DataFrame(product_data)
 
         # Check if the CSV file already exists
+        output_file = os.path.join(output_dir, 'car_listings.csv')  # Save the CSV file inside the directory
         if os.path.exists(output_file):
             existing_df = pd.read_csv(output_file)
-            # Compare the new data with the existing data
+            # Combine new data with existing data and remove duplicates based on car details
             combined_df = pd.concat([existing_df, new_df]).drop_duplicates(subset=['title', 'year', 'price'], keep='last')
 
             # Highlight new and existing data
@@ -78,7 +78,7 @@ def scrape_page(url):
             combined_df = new_df
             combined_df['status'] = 'New'
 
-        # Save the combined data to the CSV
+        # Save the combined data to the CSV file
         combined_df.to_csv(output_file, index=False)
 
         # Close the browser
@@ -87,5 +87,5 @@ def scrape_page(url):
         print(f"Scraping completed. Data saved to '{output_file}'.")
 
 # Call the function with the URL of the page
-url = 'https://www.mekina.net/cars/search?bodyType=suv'  # Replace with the actual URL
+url = 'https://www.mekina.net/cars/search?bodyType=pickup'  # Replace with the actual URL
 scrape_page(url)
