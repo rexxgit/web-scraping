@@ -3,7 +3,7 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
-# Base URL for pagination (adjust for your site)
+# Base URL for pagination
 base_url = 'https://engocha.com/classifieds/38-mens-shoes/condition_all/brand_NIKE/city_all/minprice_zr/maxprice_in/currency_df?page={}'
 
 # Headers to simulate a browser request
@@ -17,13 +17,13 @@ output_path = 'web-scraping/ecommerce/engocha.csv'
 # Ensure the output directory exists
 os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
-# Create the CSV file with headers if it doesn't exist
-if not os.path.exists(output_path):
-    pd.DataFrame(columns=['title', 'price', 'location', 'link']).to_csv(output_path, index=False)
-    print(f"Created new file: {output_path}")
-
-# Load existing data
-existing_df = pd.read_csv(output_path)
+# Check if the CSV file exists and is not empty
+if not os.path.exists(output_path) or os.stat(output_path).st_size == 0:
+    existing_df = pd.DataFrame(columns=['title', 'price', 'location', 'link'])
+    existing_df.to_csv(output_path, index=False)
+    print(f"Created new CSV file with headers: {output_path}")
+else:
+    existing_df = pd.read_csv(output_path)
 
 # List to store the product data
 product_data = []
@@ -89,27 +89,17 @@ while True:
 new_df = pd.DataFrame(product_data)
 
 # Combine with existing data and remove duplicates
-if not existing_df.empty:
-    combined_df = pd.concat([existing_df, new_df]).drop_duplicates(subset=['title', 'price', 'location', 'link'], keep='last')
-    
-    # Highlight new entries
-    new_entries = combined_df[~combined_df['title'].isin(existing_df['title'])]
-    if not new_entries.empty:
-        print("\nNew entries found:")
-        print(new_entries)
+combined_df = pd.concat([existing_df, new_df]).drop_duplicates(subset=['title', 'price', 'location', 'link'], keep='last')
 
-    # Highlight existing entries
-    existing_entries = combined_df[combined_df['title'].isin(existing_df['title'])]
-    print("\nExisting entries already in the file:")
-    print(existing_entries)
+# Highlight new entries
+new_entries = combined_df[~combined_df['title'].isin(existing_df['title'])]
+if not new_entries.empty:
+    print("\nNew entries found:")
+    print(new_entries)
 
-    # Save the combined data to the CSV file
-    combined_df.to_csv(output_path, index=False)
-    print(f"\nData saved to {output_path}")
-else:
-    # Save the new data directly to the CSV file if no existing data
-    new_df.to_csv(output_path, index=False)
-    print(f"\nData saved to {output_path}")
+# Save the combined data to the CSV file
+combined_df.to_csv(output_path, index=False)
+print(f"\nData saved to {output_path}")
 
 # Print a confirmation message
-print("\nScraping completed. New and existing data highlighted.")
+print("\nScraping completed.")
