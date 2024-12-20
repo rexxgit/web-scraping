@@ -6,19 +6,20 @@ import os
 def scrape_page(url):
     # Define the output directory and file path
     output_dir = 'web-scraping/ecommerce/car.csv'
-    output_file = os.path.join(output_dir, 'car_listings.csv')
+    output_file = os.path.join(output_dir, 'car.csv')
 
     # Create the output directory if it doesn't exist
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
         print(f"Created directory: {output_dir}")
     
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)  # Launch browser
-        page = browser.new_page()
+    # General user-agent string representing a recent version of Chrome
+    user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 
-        # Set custom user agent to avoid detection
-        page.set_user_agent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36')
+    with sync_playwright() as p:
+        # Set the user agent during browser launch
+        browser = p.chromium.launch(headless=True, args=[f"--user-agent={user_agent}"])
+        page = browser.new_page()
 
         # Navigate to the URL
         page.goto(url)
