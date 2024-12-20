@@ -4,14 +4,14 @@ import pandas as pd
 import os
 
 def scrape_page(url):
-    # Define the output directory
-    output_dir = 'web-scraping/ecommerce/mekina.csv'
+    # Define the output file path directly
+    output_file = 'web-scraping/ecommerce/car_listings.csv'
     
     # Create the output directory if it doesn't exist
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-        print(f"Created directory: {output_dir}")
-    
+    if not os.path.exists(os.path.dirname(output_file)):
+        os.makedirs(os.path.dirname(output_file))
+        print(f"Created directory: {os.path.dirname(output_file)}")
+
     # General user-agent string representing a recent version of Chrome
     user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 
@@ -64,7 +64,6 @@ def scrape_page(url):
         new_df = pd.DataFrame(product_data)
 
         # Check if the CSV file already exists
-        output_file = os.path.join(output_dir, 'car_listings.csv')  # Save the CSV file inside the directory
         if os.path.exists(output_file):
             existing_df = pd.read_csv(output_file)
             # Combine new data with existing data and remove duplicates based on car details
