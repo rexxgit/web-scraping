@@ -3,71 +3,62 @@ import requests
 from bs4 import BeautifulSoup
 import pandas as pd
 
-# Base URL for pagination (adjust for your site)
-base_url = 'https://engocha.com/classifieds/38-mens-shoes/condition_all/brand_NIKE/city_all/minprice_zr/maxprice_in/currency_df?page={}'
+# URL for scraping (no pagination)
+url = 'https://engocha.com/classifieds/38-mens-shoes/condition_all/brand_NIKE/city_all/minprice_zr/maxprice_in/currency_df'
 
 # Headers to simulate a browser request
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
 }
 
-# List to store the product data
-product_data = []
-
-# Starting page for scraping
-page = 1
-
 # Function to get text from a tag
 def get_text(tag):
     return tag.get_text(strip=True) if tag else 'No data found'
 
-# Start scraping with pagination
-while True:
-    print(f"\nFetching page {page}...")
-    url = base_url.format(page)
-    response = requests.get(url, headers=headers)
+# Send a request to fetch the page
+response = requests.get(url, headers=headers)
 
-    # Check if the page is successfully fetched
-    if response.status_code != 200:
-        print(f"Failed to retrieve page {page}. Status code: {response.status_code}")
-        break
+# Check if the page is successfully fetched
+if response.status_code != 200:
+    print(f"Failed to retrieve the page. Status code: {response.status_code}")
+    exit()
 
-    # Parse the content using BeautifulSoup
-    soup = BeautifulSoup(response.text, 'html.parser')
+# Parse the content using BeautifulSoup
+soup = BeautifulSoup(response.text, 'html.parser')
 
-    # Use CSS selector to target the main container
-    main_container = soup.find('div', id='listingslist')
+# Use CSS selector to target the main container
+main_container = soup.find('div', id='listingslist')
 
-    if not main_container:
-        print("Main container not found. Stopping pagination.")
-        break
+if not main_container:
+    print("Main container not found. Exiting.")
+    exit()
 
-    # Find all individual product containers inside the main container
-    products = main_container.find_all('div', class_='listingcolumn')
+# Find all individual product containers inside the main container
+products = main_container.find_all('div', class_='listingcolumn')
 
-    if not products:
-        print("No products found on this page. Stopping pagination.")
-        break
+if not products:
+    print("No products found on the page. Exiting.")
+    exit()
 
-    # Loop through each product and extract details
-    for product in products:
-        # Extract product details
-        title = get_text(product.find('span', class_='listingtitle'))
-        price = get_text(product.find('span', class_='price'))
-        location = get_text(product.find('span', class_='location'))
-        link_tag = product.find('a', href=True)
-        link = link_tag['href'] if link_tag else 'No link found'
+# List to store the product data
+product_data = []
 
-        # Append extracted data
-        product_data.append({
-            'title': title,
-            'price': price,
-            'location': location,
-            'link': link
-        })
+# Loop through each product and extract details
+for product in products:
+    # Extract product details
+    title = get_text(product.find('span', class_='listingtitle'))
+    price = get_text(product.find('span', class_='price'))
+    location = get_text(product.find('span', class_='location'))
+    link_tag = product.find('a', href=True)
+    link = link_tag['href'] if link_tag else 'No link found'
 
-    # Move to the next page
-    page += 1
+    # Append extracted data
+    product_data.append({
+        'title': title,
+        'price': price,
+        'location': location,
+        'link': link
+    })
 
 # Convert collected data into a DataFrame
 df = pd.DataFrame(product_data)
