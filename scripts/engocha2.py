@@ -14,11 +14,16 @@ headers = {
 # Output path for the CSV file
 output_path = 'web-scraping/ecommerce/engocha.csv'
 
-# Check if the file exists already
-if os.path.exists(output_path):
-    existing_df = pd.read_csv(output_path)
-else:
-    existing_df = pd.DataFrame()
+# Ensure the output directory exists
+os.makedirs(os.path.dirname(output_path), exist_ok=True)
+
+# Create the CSV file with headers if it doesn't exist
+if not os.path.exists(output_path):
+    pd.DataFrame(columns=['title', 'price', 'location', 'link']).to_csv(output_path, index=False)
+    print(f"Created new file: {output_path}")
+
+# Load existing data
+existing_df = pd.read_csv(output_path)
 
 # List to store the product data
 product_data = []
@@ -28,9 +33,7 @@ page = 1
 
 # Function to get text from a tag
 def get_text(tag):
-    if tag:
-        return tag.get_text(strip=True)
-    return 'No data found'
+    return tag.get_text(strip=True) if tag else 'No data found'
 
 # Start scraping with pagination
 while True:
@@ -47,12 +50,10 @@ while True:
     soup = BeautifulSoup(response.text, 'html.parser')
 
     # Use CSS selector to target the main container
-    main_container = soup.find('div', id='listingslist')  # Replace with your specific container ID if needed
+    main_container = soup.find('div', id='listingslist')
 
-    # Print the entire main container to check its structure
-    if main_container:
-        print("\nMain container HTML:\n", main_container)  # No prettify(), raw HTML will be printed
-    else:
+    # Check if the main container is found
+    if not main_container:
         print("Main container not found. Exiting...")
         break
 
@@ -65,21 +66,11 @@ while True:
         break
 
     # Loop through each product and extract details
-    for index, product in enumerate(products, start=1):
-        print(f"\nHTML for product {index} on page {page}:\n")
-        print(product)  # Raw HTML for each product
-
+    for product in products:
         # Extract the product title, price, location, and link
-        title_tag = product.find('span', class_='listingtitle')
-        title = get_text(title_tag)
-
-        price_tag = product.find('span', class_='price')
-        price = get_text(price_tag)
-
-        location_tag = product.find('span', class_='location')
-        location = get_text(location_tag)
-
-        # Extract the product link
+        title = get_text(product.find('span', class_='listingtitle'))
+        price = get_text(product.find('span', class_='price'))
+        location = get_text(product.find('span', class_='location'))
         link_tag = product.find('a', href=True)
         link = link_tag['href'] if link_tag else 'No link found'
 
@@ -97,24 +88,28 @@ while True:
 # Convert the collected data into a DataFrame
 new_df = pd.DataFrame(product_data)
 
-# Check for new and existing data
+# Combine with existing data and remove duplicates
 if not existing_df.empty:
-    # Combine the existing data with the new data and remove duplicates
     combined_df = pd.concat([existing_df, new_df]).drop_duplicates(subset=['title', 'price', 'location', 'link'], keep='last')
     
-    # Highlight new and existing data
-    new_entries = new_df[~new_df['title'].isin(existing_df['title'])]
+    # Highlight new entries
+    new_entries = combined_df[~combined_df['title'].isin(existing_df['title'])]
     if not new_entries.empty:
-        print("\nNew data entries found:")
+        print("\nNew entries found:")
         print(new_entries)
 
-    # Append new data entries to the CSV
+    # Highlight existing entries
+    existing_entries = combined_df[combined_df['title'].isin(existing_df['title'])]
+    print("\nExisting entries already in the file:")
+    print(existing_entries)
+
+    # Save the combined data to the CSV file
     combined_df.to_csv(output_path, index=False)
-    print(f"\nNew data saved to {output_path}")
+    print(f"\nData saved to {output_path}")
 else:
     # Save the new data directly to the CSV file if no existing data
     new_df.to_csv(output_path, index=False)
     print(f"\nData saved to {output_path}")
 
 # Print a confirmation message
-print("\nScraping completed and data saved.")
+print("\nScraping completed. New and existing data highlighted.")
