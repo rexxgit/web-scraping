@@ -46,6 +46,10 @@ while True:
         print(f"Failed to retrieve page {page}. Status code: {response.status_code}")
         break
 
+    # Print the HTML structure of the page
+    print("\nHTML Structure of the page:")
+    print(response.text[:1000])  # Print the first 1000 characters of the HTML for brevity
+
     # Parse the content using BeautifulSoup
     soup = BeautifulSoup(response.text, 'html.parser')
 
