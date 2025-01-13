@@ -1,4 +1,4 @@
-name: Web Scraping - Dynamic Template
+name: plot
 
 on:
   schedule:
