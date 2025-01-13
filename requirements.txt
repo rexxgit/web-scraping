@@ -5,3 +5,4 @@ pygithub
 playwright
 reportlab
 fake-useragent
+ matplotlib
