@@ -2,6 +2,7 @@ from playwright.sync_api import sync_playwright
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
+from playwright._impl._errors import TimeoutError
 
 # Initialize a list to store all the scraped data
 scraped_data = []
@@ -17,8 +18,12 @@ def scrape_page(page, url):
     print(f"Scraping: {url}")  # Print the current URL being scraped
     page.goto(url)
 
-    # Wait for the page to load and the listings to appear
-    page.wait_for_selector('div.col-md-12.listingcolumn.normal.fourcolumn', timeout=10000)
+    try:
+        # Wait for the page to load and the listings to appear
+        page.wait_for_selector('div.col-md-12.listingcolumn.normal.fourcolumn', timeout=20000)  # Increase timeout to 20 seconds
+    except TimeoutError:
+        print(f"Timeout occurred while waiting for listings on {url}.")
+        return None  # Skip this page
 
     # Get the listing elements
     listings = page.query_selector_all('div.col-md-12.listingcolumn.normal.fourcolumn')
@@ -29,23 +34,14 @@ def scrape_page(page, url):
 
     # Loop through and extract data for each listing
     for listing in listings:
-        # Extract title
         title = listing.query_selector('span.listingtitle').inner_text().strip() if listing.query_selector('span.listingtitle') else 'N/A'
-        
-        # Extract price
         price_text = listing.query_selector('span.price').inner_text().strip() if listing.query_selector('span.price') else 'N/A'
         try:
             price = float(price_text.replace('ETB', '').replace(',', '').strip()) if price_text != 'N/A' else None
         except ValueError:
             price = None  # Handle invalid price formats
-        
-        # Extract description
         description = listing.query_selector('div.row.smalldesc').inner_text().strip() if listing.query_selector('div.row.smalldesc') else 'N/A'
-        
-        # Extract condition
         condition = listing.query_selector('div.attrib.cond.new').inner_text().strip() if listing.query_selector('div.attrib.cond.new') else 'N/A'
-        
-        # Extract location
         location = listing.query_selector('span.location').inner_text().strip() if listing.query_selector('span.location') else 'N/A'
 
         # Store the extracted data in a dictionary
@@ -56,17 +52,17 @@ def scrape_page(page, url):
             'Condition': condition,
             'Location': location
         }
-        scraped_data.append(data)  # Add data to the list
+        scraped_data.append(data)
 
     # Handle pagination - look for the "Next" button
     next_button = page.query_selector('a:has-text("Next »")')
     if next_button:
         next_page_url = next_button.get_attribute('href')
-        print(f"Moving to the next page: {next_page_url}")  # Print next page URL
+        print(f"Moving to the next page: {next_page_url}")
         return next_page_url
     else:
-        print("No more pages to scrape.")  # No more pages to scrape
-        return None  # No more pages to scrape
+        print("No more pages to scrape.")
+        return None
 
 # Function to scrape multiple pages starting from the first one
 def scrape_all_pages(start_url):
@@ -85,7 +81,7 @@ def scrape_all_pages(start_url):
         url = start_url
         while url:
             url = scrape_page(page, url)  # Scrape the current page and get the next page URL
-            
+
         # Close the browser after scraping all pages
         browser.close()
 
