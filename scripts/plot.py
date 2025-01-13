@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import re
 
 def scrape():
-    output_folder = 'web-scraping/ecommerce
+    output_folder = "web-scraping/ecommerce"
     output_file = "brand22.csv"
     os.makedirs(output_folder, exist_ok=True)  # Ensure output folder exists
     output_path = os.path.join(output_folder, output_file)
