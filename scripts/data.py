@@ -7,7 +7,7 @@ import re
 from collections import Counter
 
 def scrape():
-    output_folder = "web-scraping/ecommerce"
+    output_folder = "web-scraping/ecommerce/project"
     output_file = "brand22.csv"
     os.makedirs(output_folder, exist_ok=True)  # Ensure output folder exists
     output_path = os.path.join(output_folder, output_file)
@@ -135,7 +135,7 @@ def plot_price_distribution(data):
     plt.xticks(data.index, data['title'], rotation=45, ha='right', fontsize=10)
 
     # Save the plot as a JPEG file
-    plot_path = os.path.join('web-scraping/ecommerce', "arki2.jpeg")
+    plot_path = os.path.join('web-scraping/ecommerce/project', "arki2.jpeg")
     plt.tight_layout()
     plt.savefig(plot_path)
     plt.close()
