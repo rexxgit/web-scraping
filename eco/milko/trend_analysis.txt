@@ -1,0 +1,71 @@
+Trend Analysis for Price Ranges
+
+Number of High Price Products: 27
+Number of Mid Price Products: 2
+Number of Low Price Products: 4
+
+High Price Products (Titles, Prices, Links):
+- Title: Blanket ብርድልብስ, Price: 3600, Link: https://jiji.com.et/gullele/decor-accessories/blanket-beredelebese-f76ZTOjMOyXcI0BCNlURfndD.html?page=1&pos=1&cur_pos=1&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=0
+- Title: Louis Vuitton, Price: 3200, Link: https://jiji.com.et/gullele/shoes/louis-vuitton-1CQZMoHDaV2BtS6Y7pMdAXYo.html?page=1&pos=5&cur_pos=5&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=4
+- Title: Alexander Mcqueen, Price: 2500, Link: https://jiji.com.et/gullele/shoes/alexander-mcqueen-fkUg2XRRjeYa80ClER7sRRpT.html?page=1&pos=9&cur_pos=9&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=8
+- Title: Air Jordan Four, Price: 2700, Link: https://jiji.com.et/gullele/shoes/air-jordan-four-5YDPYEcGMqCW75gQMNBWK8Vd.html?page=1&pos=13&cur_pos=13&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=12
+- Title: Louis Vuitton, Price: 3200, Link: https://jiji.com.et/gullele/shoes/louis-vuitton-xCllyvZF1BvsBsq7Fgs79aPE.html?page=1&pos=17&cur_pos=17&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=16
+- Title: Skechers Shoe, Price: 2600, Link: https://jiji.com.et/gullele/shoes/skechers-shoe-8pXlisXq2WRqB4N6jX9QtKnD.html?page=2&pos=4&cur_pos=4&ads_per_page=12&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=3
+- Title: Luois Vuitton Air, Price: 3400, Link: https://jiji.com.et/gullele/shoes/luois-vuitton-air-pN4POudR5934gcXqllFp22o6.html?page=2&pos=8&cur_pos=8&ads_per_page=12&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=7
+- Title: New Star BOOC, Price: 2150, Link: https://jiji.com.et/gullele/shoes/new-star-booc-hUpz1AhBIzUqSW5LFNUsqFGt.html?page=2&pos=12&cur_pos=12&ads_per_page=12&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=11
+- Title: Child Boots, Price: 2000, Link: https://jiji.com.et/gullele/childrens-shoes/child-boots-86NGSbSgD5ZMyjyBa3Qv9CsT.html?page=1&pos=14&cur_pos=14&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=13
+- Title: Skechers for You, Price: 2300, Link: https://jiji.com.et/gullele/shoes/skechers-for-you-uzTvSrn522SoDPGsI7jiA4CP.html?page=1&pos=18&cur_pos=18&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=17
+- Title: Skechers Shoe, Price: 2300, Link: https://jiji.com.et/gullele/shoes/skechers-shoe-icWqYRqNrZzDhDAClWvBNywh.html?page=2&pos=1&cur_pos=1&ads_per_page=12&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=0
+- Title: Allstar Converse, Price: 2700, Link: https://jiji.com.et/gullele/shoes/allstar-converse-BRUoVRqUc6sqQHbVZJkJYwx9.html?page=2&pos=5&cur_pos=5&ads_per_page=12&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=4
+- Title: Allstar Converse, Price: 2700, Link: https://jiji.com.et/gullele/shoes/allstar-converse-1DBu2ZtXcO7GI58h1BSqKV1y.html?page=2&pos=9&cur_pos=9&ads_per_page=12&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=8
+- Title: Blanket ብርድ ልብስ, Price: 2700, Link: https://jiji.com.et/gullele/decor-accessories/blanket-berede-lebese-wizxJ41uFiNRARj6ruOZVmpS.html?page=1&pos=3&cur_pos=3&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=2
+- Title: Balenciaga Speed Racer, Price: 2600, Link: https://jiji.com.et/gullele/shoes/balenciaga-speed-racer-zG2jrkfS9F2TmVNzoAP3joS.html?page=1&pos=7&cur_pos=7&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=6
+- Title: New Balance 998, Price: 2100, Link: https://jiji.com.et/gullele/shoes/new-balance-998-rmlgcTOtrGWDiEmppJtnJjSc.html?page=1&pos=11&cur_pos=11&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=10
+- Title: Allstar Converse, Price: 2800, Link: https://jiji.com.et/gullele/shoes/allstar-converse-aRQHkVMSPhH8HYNaKQfvjwbd.html?page=1&pos=15&cur_pos=15&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=14
+- Title: Allstar Converse, Price: 2600, Link: https://jiji.com.et/gullele/shoes/allstar-converse-yWSKNtMPwvYgZvbEAmo0pyWu.html?page=1&pos=19&cur_pos=19&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=18
+- Title: Skechers Shoe, Price: 2000, Link: https://jiji.com.et/gullele/shoes/skechers-shoe-a3gEut5tLUzYZSdDJW2EOTz0.html?page=2&pos=3&cur_pos=3&ads_per_page=12&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=2
+- Title: Allstar Converse, Price: 3000, Link: https://jiji.com.et/gullele/shoes/allstar-converse-2HcpNGKphI1uPxiPrPxCFulN.html?page=2&pos=7&cur_pos=7&ads_per_page=12&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=6
+- Title: Allstar Converse, Price: 2500, Link: https://jiji.com.et/gullele/shoes/allstar-converse-CjkqcQaKVhMkbiRneQHopNAm.html?page=2&pos=11&cur_pos=11&ads_per_page=12&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=10
+- Title: Turkey Fashion Bed Sheet Packaging, Price: 3500, Link: https://jiji.com.et/gullele/decor-accessories/turkey-fashion-bed-sheet-packaging-f0POGepm47eUOmefHzorDGN0.html?page=1&pos=4&cur_pos=4&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=3
+- Title: ACG Shoe for You, Price: 3100, Link: https://jiji.com.et/gullele/shoes/acg-shoe-for-you-htv90VZFWTTnkH5YP4sBBXEP.html?page=1&pos=8&cur_pos=8&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=7
+- Title: Alexander McQueen, Price: 2500, Link: https://jiji.com.et/gullele/shoes/alexander-mcqueen-oOVby5A5gDLXJFMmxx2Gckkr.html?page=1&pos=12&cur_pos=12&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=11
+- Title: Nike Fashion, Price: 2300, Link: https://jiji.com.et/gullele/shoes/nike-fashion-65cE5cSxGm633OnsYSMYmWIv.html?page=1&pos=20&cur_pos=20&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=19
+- Title: Nike Tiempo, Price: 2600, Link: https://jiji.com.et/gullele/shoes/nike-tiempo-tI8gBaSw5ZlTwdseQ674QZki.html?page=2&pos=2&cur_pos=2&ads_per_page=12&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=1
+- Title: Adidas Adiprene, Price: 2500, Link: https://jiji.com.et/gullele/shoes/adidas-adiprene-8xed13ZHYOQZNHGZg6q0G8j7.html?page=2&pos=6&cur_pos=6&ads_per_page=12&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=5
+
+Mid Price Products (Titles, Prices, Links):
+- Title: Kemei Tondos, Price: 1200, Link: https://jiji.com.et/gullele/hair-beauty/kemei-tondos-xFgbhKIeMjpbGQntH6h5PVLs.html?page=1&pos=6&cur_pos=6&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=5
+- Title: Nike Airforce, Price: 1800, Link: https://jiji.com.et/gullele/shoes/nike-airforce-lkf0RtBdUdUdkPWqUpYokt1q.html?page=1&pos=16&cur_pos=16&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=15
+
+Low Price Products (Titles, Prices, Links):
+- Title: Eco Forest Castor Oil, Price: 850, Link: https://jiji.com.et/gullele/hair-beauty/eco-forest-castor-oil-69yC6XrfsBem1AfcRoam2VBs.html?page=1&pos=2&cur_pos=2&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=1
+- Title: Coconut Oil, Price: 700, Link: https://jiji.com.et/gullele/hair-beauty/coconut-oil-iAbdrrv4yKQvzvX9hpMDRe4k.html?page=1&pos=10&cur_pos=10&ads_per_page=20&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=9
+- Title: No title, Price: 0, Link: https://jiji.com.etNo link
+- Title: Smart 28 Perfume ሽቶ, Price: 450, Link: https://jiji.com.et/gullele/fragrance/smart-28-perfume-sheto-mzWn3XuwkxmMkxazznWEcGYH.html?page=2&pos=10&cur_pos=10&ads_per_page=12&ads_count=32&lid=1bhCaJCf0h7FQQ6R&indexPosition=9
+
+1. High Price Bar (Premium Products)
+English:
+- Trend: Luxury and exclusivity are in demand. Consumers are paying for quality and status.
+- Action: Focus on exclusive launches and personalized experiences. Provide top-tier customer service and innovative offerings.
+Amharic:
+የቅንጦት እና የኤክስክሉስቭ ምርቶች ተፈላጊ ናቸው። ተጠቃሚዋች ለጥራት እና ደረጃ ምርቶች እየከፈሉ ነው።
+Actions:
+ትኩረት በ ልዩ ጅምሮች እና ግላዊ ተሞክሮዎች ላይ ያተኩሩ። ከፍተኛ-ደረጃ የደንበኞች አገልግሎት እና የፈጠራ አቅርቦቶች ያቅርቡ
+
+2. Mid Price Bar (Affordable Quality Products)
+English:
+- Trend: Consumers are seeking good value for their money, especially during economic uncertainty. Discounts and promotions drive purchases.
+- Action: Highlight value-for-money and use seasonal sales and bundle offers to stay competitive.
+Amharic:
+ተጠቃሚዎች ለገንዘባቸው ጥሩ ዋጋ ይፈልጋሉ ፣ በተለይም በኢኮኖሚያዊ አለመረጋጋት ወቅት። ቅናሾች እና ማስተዋወቂያዎች ግዥዎችን ያቅርቡ.
+Action:
+በዋጋ-ለገንዘብ ላይ ያተኩሩ እና ወቅታዊ ሽያጮችን ይጠቀሙ እና ተወዳዳሪ ሆነው ለመቆየት የጥቅል አቅርቦቶችን ይጠቀሙ።
+
+3. Low Price Bar (Budget Products)
+English:
+- Trend: Budget-conscious consumers are looking for affordable and quick deals. Flash sales and time-limited offers dominate buying behavior.
+- Action: Focus on frequent flash sales and loyalty programs to create urgency and retain customers.
+Amharic:
+የበጀት ግንዛቤ ያላቸው ተጠቃሚዋች ተመጣጣኝ እና ፈጣን ስምምነቶችን ይፈልጋሉ። የፍላሽ ሽያጭ እና በጊዜ የተገደቡ ቅናሾች ላይ ያተኩሩ .
+Action:
+አስቸኳይ ሁኔታ ለመፍጠር እና ደንበኞችን ለማቆየት በ ተደጋጋሚ የፍላሽ ሽያጭ እና የታማኝነት ፕሮግራሞች ላይ ያተኩሩ
