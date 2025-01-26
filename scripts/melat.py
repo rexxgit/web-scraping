@@ -1,118 +1,152 @@
 import asyncio
 import random
 import os
+from collections import Counter
 import pandas as pd
 import matplotlib.pyplot as plt
-from collections import Counter
 from playwright.async_api import async_playwright
 from playwright._impl._errors import TimeoutError
 
-# List of user agents to use for rotating
+# List of user agents to mimic different browsers
 USER_AGENTS = [
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:92.0) Gecko/20100101 Firefox/92.0",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0.2 Safari/605.1.15",
-    "Mozilla/5.0 (Linux; Android 11; Pixel 3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Mobile Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.114 Safari/537.36",
-    # Add more user agents as needed
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36",
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Gecko/20100101 Firefox/89.0",
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0.1 Safari/605.1.15",
+    "Mozilla/5.0 (Linux; Android 9; SM-G960F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Mobile Safari/537.36",
 ]
 
-def create_output_paths():
-    output_folder = "eco/melat"
-    os.makedirs(output_folder, exist_ok=True)
-    output_paths = {
-        "csv": os.path.join(output_folder, "melat.csv"),
-        "trend_analysis": os.path.join(output_folder, "trend_melat.txt"),
-        "popular_products": os.path.join(output_folder, "popular_melat.csv"),
-        "informed_decisions": os.path.join(output_folder, "informed_melat.txt")
-    }
-    return output_paths
-
-async def scrape():
-    output_paths = create_output_paths()
+async def run():
     async with async_playwright() as playwright:
         browser = await playwright.chromium.launch(headless=True)
+        user_agent = random.choice(USER_AGENTS)
+        context = await browser.new_context(user_agent=user_agent)
+        page = await context.new_page()
+        
+        output_folder = "eco/melat"
+        output_file = "ef.csv"
+        os.makedirs(output_folder, exist_ok=True)  # Ensure output folder exists
+        output_path = os.path.join(output_folder, output_file)
 
-        all_results = []
-        seen_titles = set()
+        # File paths for analysis outputs
+        trend_analysis_file = os.path.join(output_folder, "trend_ef.txt")
+        popular_products_file = os.path.join(output_folder, "popular_ef.csv")
+        informed_decisions_file = os.path.join(output_folder, "informed_ef.txt")
 
-        print("Starting the scraping process...")  # Indicate the start of the scraping process
+        await page.goto("https://web.facebook.com/marketplace/profile/100076346097013/", wait_until="domcontentloaded")
+        
+        await page.wait_for_selector("div.x9f619")
 
-        while True:
-            user_agent = random.choice(USER_AGENTS)
-            context = await browser.new_context(user_agent=user_agent)
-            page = await context.new_page()
-            
+        all_results, seen_titles = [], set()  # To track unique titles
+
+        for _ in range(5):  # Scroll a number of times
+            await page.evaluate("window.scrollTo(0, document.body.scrollHeight);")
+            await page.wait_for_timeout(2000)
+
+        listings = await page.query_selector_all("div.x9f619")
+
+        for listing in listings:
             try:
-                await page.goto("https://web.facebook.com/marketplace/profile/100004503911329/", wait_until="domcontentloaded")
-                await page.wait_for_selector("div.x9f619")
+                title_element = await listing.query_selector("span.x1lliihq.x6ikm8r.x10wlt62.x1n2onr6")
+                price_element = await listing.query_selector("span.x78zum5")
+                link_element = await listing.query_selector("a")
 
-                listings = await page.query_selector_all("div.x9f619")
+                title = await title_element.inner_text() if title_element else None
+                price = await price_element.inner_text() if price_element else "No Price"
+                link = await link_element.get_attribute("href") if link_element else None
 
-                for listing in listings:
-                    try:
-                        title_element = await listing.query_selector("span.x1lliihq.x6ikm8r.x10wlt62.x1n2onr6")
-                        price_element = await listing.query_selector("span.x78zum5")
-                        link_element = await listing.query_selector("a")
+                # Skip listings without title or link
+                if not title or not link or price == "No Price":
+                    continue
 
-                        title = await title_element.inner_text() if title_element else None
-                        price = await price_element.inner_text() if price_element else "No Price"
-                        link = await link_element.get_attribute("href") if link_element else None
+                if link.startswith('/'):
+                    link = f"https://web.facebook.com{link}"
 
-                        if title and link and price != "No Price" and title not in seen_titles:
-                            seen_titles.add(title)
-                            if link.startswith('/'):
-                                link = f"https://web.facebook.com{link}"
-                            all_results.append({'title': title, 'price': price, 'link': link, 'status': 'New'})
+                # Check for duplicates based on title
+                if title not in seen_titles:
+                    seen_titles.add(title)
+                    all_results.append({
+                        'title': title,
+                        'price': price,
+                        'link': link
+                    })
 
-                        await asyncio.sleep(random.uniform(1, 3))
+                    # Adding a delay to mimic human behavior
+                    await asyncio.sleep(random.uniform(1, 3))
 
-                    except Exception as e:
-                        print("Error extracting data from listing:", e)
-
-                await context.close()
-
-            except TimeoutError:
-                print("The operation timed out. Please check your internet connection or the website's availability.")
-                await context.close()
-                break
-
-            print(f"{len(all_results)} listings have been gathered so far.")  # Number of listings collected
-
-            # Add any condition to break the while loop if needed
+            except Exception as e:
+                print("Error extracting data from listing:", e)
 
         await browser.close()
 
-        # Write results to CSV
-        df = pd.DataFrame(all_results)
-        if os.path.exists(output_paths['csv']):
-            existing_data = pd.read_csv(output_paths['csv'])
-            df = pd.concat([existing_data, df]).drop_duplicates(subset='title', keep='last')
-            df['status'] = 'Existing'
-        df.to_csv(output_paths['csv'], index=False, encoding='utf-8')
+        new_data = pd.DataFrame(all_results)
+        
+        if not new_data.empty:
+            existing_data = pd.read_csv(output_path) if os.path.exists(output_path) else pd.DataFrame()
 
-        print("Scraping done!")  # Indicate that scraping has finished
-        return df
+            # Check if 'link' column exists in existing_data before accessing
+            if 'link' in existing_data.columns:
+                merged_data = pd.concat([existing_data, new_data]).drop_duplicates(subset=['link'], keep='last')
+                updates = merged_data[~merged_data['link'].isin(existing_data['link'])]
+            else:
+                print("Column 'link' not found in existing data. Merging without filtering by updates.")
+                merged_data = pd.concat([existing_data, new_data]).drop_duplicates(keep='last')
+                updates = new_data  # Treating all new data as updates since we can't find existing links
+
+            merged_data.to_csv(output_path, index=False)
+            print(f"Scraping completed. {len(updates)} new items added. Data saved to '{output_path}'.")
+
+            # Data Visualization
+            plot_price_distribution(merged_data)
+
+            # Get popular products and trend analysis
+            popular_products = get_popular_products(merged_data)
+            popular_products.to_csv(popular_products_file, index=False)
+            print(f"Popular products saved to '{popular_products_file}'.")
+
+            # Perform Analysis and Generate Dynamic Reports
+            trend_analysis = analyze_trends(merged_data)
+            with open(trend_analysis_file, "w", encoding='utf-8') as f:
+                f.write(trend_analysis)
+            print(f"Trend analysis saved to '{trend_analysis_file}'.")
+
+            informed_decisions = analyze_price_distribution(merged_data)
+            with open(informed_decisions_file, "w", encoding='utf-8') as f:
+                f.write(informed_decisions)
+            print(f"Informed decisions saved to '{informed_decisions_file}'.")
+        else:
+            print("No new data found. Existing file remains unchanged.")
 
 def plot_price_distribution(data):
-    data['price'] = pd.to_numeric(data['price'].str.replace('ETB', '').str.replace(',', '').strip(), errors='coerce')
-    data = data.dropna(subset=['price'])
+    # Ensure 'price' is treated as strings first
+    data['price'] = data['price'].astype(str)
+    
+    # Remove the currency symbol and convert to numeric
+    data['price'] = pd.to_numeric(data['price'].str.replace('ETB', '').str.replace(',', '').str.strip(), errors='coerce')
+    data = data.dropna(subset=['price'])  # Drop rows where 'price' could not be converted
 
+    # Plotting the price distribution
     plt.figure(figsize=(14, 8))
     plt.bar(data.index, data['price'], color='skyblue', edgecolor='black')
     plt.title('Price Distribution and Range of Items', fontsize=16)
     plt.xlabel('Items (Scraped Titles)', fontsize=12)
     plt.ylabel('Price (ETB)', fontsize=12)
 
+    # Set horizontal titles on X-axis with proper spacing and rotation
     plt.xticks(data.index, data['title'], rotation=45, ha='right', fontsize=10)
-    plot_path = os.path.join('eco/melat', "melat.jpeg")
+
+    # Save the plot as a JPEG file
+    plot_path = os.path.join('eco/melat', "ef.jpeg")
     plt.tight_layout()
     plt.savefig(plot_path)
     plt.close()
+
     print(f"Price distribution plot saved to '{plot_path}'.")
 
 def get_popular_products(data):
+    # Count the frequency of product titles
     title_counts = Counter(data['title'])
+    
+    # Get the top 10 most frequent products
     popular_products = pd.DataFrame(title_counts.most_common(10), columns=['Title', 'Frequency'])
     return popular_products
 
@@ -121,9 +155,18 @@ def analyze_trends(data):
     if data.empty:
         return trend_analysis + "No data available for analysis.\n"
 
+    # Convert prices to string to avoid errors when using .str accessor
+    data['price'] = data['price'].astype(str)
+
+    # Remove the currency symbol and convert to numeric
+    data['price'] = pd.to_numeric(data['price'].str.replace('ETB', '').str.replace(',', '').str.strip(), errors='coerce')
     min_price = data['price'].min()
     max_price = data['price'].max()
 
+    if pd.isna(min_price) or pd.isna(max_price):
+        return trend_analysis + "No valid price data available for analysis.\n"
+
+    # Create dynamic price bins based on data
     price_bins = [min_price + i * (max_price - min_price) // 4 for i in range(5)]
     
     price_ranges = {
@@ -132,6 +175,7 @@ def analyze_trends(data):
         'High': data[data['price'] > price_bins[2]]
     }
 
+    # Dynamic counting of high, mid, and low price products
     high_price_products = len(price_ranges['High'])
     mid_price_products = len(price_ranges['Mid'])
     low_price_products = len(price_ranges['Low'])
@@ -158,13 +202,15 @@ def analyze_trends(data):
             trend_analysis += f"- Title: {row['title']}, Price: {row['price']}, Link: {row['link']}\n"
         trend_analysis += "\n"
 
+    # Conditional statements for trend analysis
     if high_price_products > 0:
         trend_analysis += "1. High Price Bar (Premium Products)\n"
         trend_analysis += "English:\n"
         trend_analysis += "- Trend: Luxury and exclusivity are in demand. Consumers are paying for quality and status.\n"
         trend_analysis += "- Action: Focus on exclusive launches and personalized experiences. Provide top-tier customer service and innovative offerings.\n"
         trend_analysis += "Amharic:\n"
-        trend_analysis += "የቅንጦት እና የኤክስክሉስቭ ምርቶች ተፈላጊ ናቸው። ተጠቃሚዋች ለጥራት እና ደረጃ ምርቶች እየከፈሉ ነው።\n"
+        trend_analysis += "ደንበኞች ይሳቡ:\n"
+        trend_analysis += "- እንደ ውስን እትሞች ወይም የልዩ ስብስቦች ቀደምት መዳረሻ ያሉ ልዩ ቅናሾች ያቅርቡ። ይህ ምርቱ ልዩ እና ከፍተኛ ዋጋ ያለው እንዲሰማው ያደርገዋል.\n"
         trend_analysis += "Actions:\n"
         trend_analysis += "ትኩረት በ ልዩ ጅምሮች እና ግላዊ ተሞክሮዎች ላይ ያተኩሩ። ከፍተኛ-ደረጃ የደንበኞች አገልግሎት እና የፈጠራ አቅርቦቶች ያቅርቡ\n\n"
 
@@ -174,9 +220,10 @@ def analyze_trends(data):
         trend_analysis += "- Trend: Consumers are seeking good value for their money, especially during economic uncertainty. Discounts and promotions drive purchases.\n"
         trend_analysis += "- Action: Highlight value-for-money and use seasonal sales and bundle offers to stay competitive.\n"
         trend_analysis += "Amharic:\n"
-        trend_analysis += "ተጠቃሚዎች ለገንዘባቸው ጥሩ ዋጋ ይፈልጋሉ ፣ በተለይም በኢኮኖሚዊ አለመረጋጋት ወቅት። ቅናሾች እና ማስተዋወቂያዎች ግዥዎችን ይቅርቡ.\n"
-        trend_analysis += "Action:\n"
-        trend_analysis += "በዋጋ-ለገንዘብ ላይ ያተኩሩ እና ወቅታዊ ሽያጮችን ይጠቀሙ እና ተወዳዳሪ ሆነው ለመቆየት የጥቅል አቅርቦቶችን ይጠቀሙ።\n\n"
+        trend_analysis += "ደንበኞችን ይሳቡ:\n"
+        trend_analysis += "- አጽንኦት ይስጡ ለገንዘብ ዋጋ ደንበኛው በተመጣጣኝ ዋጋ ጥሩ ጥራት እንደሚያገኙ አሳይ። ስምምነቱን የበለጠ የተሻለ ለማድረግ ቅናሾች ወይም ነፃ መላኪያ ያቅርቡ።\n"
+        trend_analysis += "- ተወዳዳሪ ሁን:\n"
+        trend_analysis += "  - በዋጋ-ለገንዘብ ላይ ያተኩሩ እና ወቅታዊ ሽያጮችን ይጠቀሙ እና ተወዳዳሪ ሆነው ለመቆየት የጥቅል አቅርቦቶችን ይጠቀሙ።\n\n"
 
     if low_price_products > 0:
         trend_analysis += "3. Low Price Bar (Budget Products)\n"
@@ -184,9 +231,10 @@ def analyze_trends(data):
         trend_analysis += "- Trend: Budget-conscious consumers are looking for affordable and quick deals. Flash sales and time-limited offers dominate buying behavior.\n"
         trend_analysis += "- Action: Focus on frequent flash sales and loyalty programs to create urgency and retain customers.\n"
         trend_analysis += "Amharic:\n"
-        trend_analysis += "የበጀት ግንዛቤ ያላቸው ተጠቃሚዋች ተመጣጣኝ እና ፈጣን ስምምነቶችን ይፈልጋሉ። የፍላሽ ሽያጭ እና በጊዜ የተገደቡ ቅናሾች ላይ ያተኩሩ .\n"
-        trend_analysis += "Action:\n"
-        trend_analysis += "አስቸኳይ ሁኔታ ለመፍጠር እና ደንበኞችን ለማቆየት በ ተደጋጋሚ የፍላሽ ሽያጭ እና የታማኝነት ፕሮግራሞች ላይ ያተኩሩ\n"
+        trend_analysis += "ደንበኞችን ይሳቡ:\n"
+        trend_analysis += "- አስቸኳይ ሁኔታን ለመፍጠር እና ፈጣን ግዢዎችን ለማበረታታት የፍላሽ ሽያጮችን ያሂዱ  (የተገደበ ጊዜ ቅናሾች)።\n"
+        trend_analysis += "- አስደመጥ ሁን:\n"
+        trend_analysis += "  - በጣም በጀት ተደርጎ ወይም በአለመው አገልግሎት ይሸልሙ (ለምሳሌ ፣ በሚቀጥለው ግዢ ላይ ቅናሾች)\n"
 
     return trend_analysis
 
@@ -194,9 +242,12 @@ def analyze_price_distribution(data):
     if data.empty:
         return "No price data available for analysis.\n"
 
+    data['price'] = data['price'].astype(str)
+    data['price'] = pd.to_numeric(data['price'].str.replace('ETB', '').str.replace(',', '').str.strip(), errors='coerce')
     min_price = data['price'].min()
     max_price = data['price'].max()
-    
+
+    # Create dynamic price bins based on valid data range
     price_bins = [min_price + i * (max_price - min_price) // 4 for i in range(5)]
     
     low_count = len(data[data['price'] <= price_bins[1]])
@@ -204,7 +255,7 @@ def analyze_price_distribution(data):
     high_count = len(data[data['price'] > price_bins[2]])
 
     total_count = len(data)
-    
+
     recommendations = "Recommendations & Suggestions Based on Data Visualization\n\n"
     
     if high_count > (total_count * 0.3):
@@ -217,7 +268,7 @@ def analyze_price_distribution(data):
         recommendations += "  - Regularly release new and innovative products to keep customers interested and excited.\n"
         recommendations += "Amharic:\n"
         recommendations += "ደንበኞችን ይሳቡ:\n"
-        recommendations += "- እንደ ውስን እትሞች ወይም የልዩ ስብስቦች ቀደምት መዳረሻ ያሉ ልዩ ቅናሾችን ያቅርቡ። ይህ ምርቱ ልዩ እና ከፍተኛ ዋጋ ያለው እንዲሰማው ያደርገዋል.\n"
+        recommendations += "- እንደ ውስን እትሞች ወይም የልዩ ስብስቦች ቀደምት መዳረሻ ያሉ ልዩ ቅናሾች ያቅርቡ። ይህ ምርቱ ልዩ እና ከፍተኛ ዋጋ ያለው እንዲሰማው ያደርገዋል.\n"
         recommendations += "- ተወዳዳሪ ሁን:\n"
         recommendations += "  - የፕሪሚየም ዋጋን ትክክለኛነት ለማረጋገጥ እጅግ በጣም ጥሩ የደንበኞች አገልግሎት  (ፈጣን ምላሾች ፣ ቀላል ተመላሾች) ያቅርቡ።\n\n"
 
@@ -233,8 +284,7 @@ def analyze_price_distribution(data):
         recommendations += "ደንበኞችን ይሳቡ:\n"
         recommendations += "- አጽንኦት ይስጡ ለገንዘብ ዋጋ ደንበኛው በተመጣጣኝ ዋጋ ጥሩ ጥራት እንደሚያገኙ አሳይ። ስምምነቱን የበለጠ የተሻለ ለማድረግ ቅናሾች ወይም ነፃ መላኪያ ያቅርቡ።\n"
         recommendations += "- ተወዳዳሪ ሁን:\n"
-        recommendations += "  - ተፎካካሪዎችን በመደበኛነት በመፈተሽ እና እንደ አስፈላጊነቱ በማስተካከል ዋጋዎችዎን ተወዳዳሪ ያድርጉ.\n"
-        recommendations += "  - የታሰበውን እሴት ለመጨመር ጥቅሎች  (ለምሳሌ ፣ አንድ ይግዙ ነፃ) ያቅርቡ።\n\n"
+        recommendations += "  - በዋጋ-ለገንዘብ ላይ ያተኩሩ እና ወቅታዊ ሽያጮችን ይጠቀሙ እና ተወዳዳሪ ሆነው ለመቆየት የጥቅል አቅርቦቶችን ይጠቀሙ።\n\n"
 
     if low_count > (total_count * 0.3):
         recommendations += "3. Low Price Bar (Budget Products)\n"
@@ -255,19 +305,5 @@ def analyze_price_distribution(data):
 
     return recommendations
 
-async def main():
-    data = await scrape()
-    plot_price_distribution(data)
-    
-    # Get popular products and analysis
-    popular_products = get_popular_products(data)
-    print("Popular Products:\n", popular_products)
-
-    trend_analysis = analyze_trends(data)
-    print(trend_analysis)
-
-    price_distribution_analysis = analyze_price_distribution(data)
-    print(price_distribution_analysis)
-
-# Run the main function
-asyncio.run(main())
+# Run the scraping function
+asyncio.run(run())
