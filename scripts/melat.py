@@ -32,7 +32,7 @@ async def run():
         popular_products_file = os.path.join(output_folder, "popular_ef.csv")
         informed_decisions_file = os.path.join(output_folder, "informed_ef.txt")
 
-        await page.goto("https://web.facebook.com/marketplace/profile/100076346097013/", wait_until="domcontentloaded")
+        await page.goto("https://web.facebook.com/marketplace/profile/100089617338533/", wait_until="domcontentloaded")
         
         await page.wait_for_selector("div.x9f619")
 
