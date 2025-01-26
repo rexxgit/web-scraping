@@ -1,0 +1,52 @@
+Trend Analysis for Price Ranges
+
+Number of High Price Products: 1
+Number of Mid Price Products: 7
+Number of Low Price Products: 3
+
+High Price Products (Titles, Prices, Links):
+- Title: Nike Gortex, Price: 8000.0, Link: https://web.facebook.com/marketplace/item/1671035670114255/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+
+Mid Price Products (Titles, Prices, Links):
+- Title: Nike air force, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/1769135587242128/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike man,s shose, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/454448660934665/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike mans shose, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/502386096219295/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike Court vision, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/8830128763764725/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike Air force 1, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/1253248025750883/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike Air force, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/2921836531313933/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Jordan 5, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/1260358011695957/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+
+Low Price Products (Titles, Prices, Links):
+- Title: Tiger women shose, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/948264810292033/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: New balance 327, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/524943953936058/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike Air Jordan 1, Price: 6000.0, Link: https://web.facebook.com/marketplace/item/1401353467544464/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+
+1. High Price Bar (Premium Products)
+English:
+- Trend: Luxury and exclusivity are in demand. Consumers are paying for quality and status.
+- Action: Focus on exclusive launches and personalized experiences. Provide top-tier customer service and innovative offerings.
+Amharic:
+ደንበኞች ይሳቡ:
+- እንደ ውስን እትሞች ወይም የልዩ ስብስቦች ቀደምት መዳረሻ ያሉ ልዩ ቅናሾች ያቅርቡ። ይህ ምርቱ ልዩ እና ከፍተኛ ዋጋ ያለው እንዲሰማው ያደርገዋል.
+Actions:
+ትኩረት በ ልዩ ጅምሮች እና ግላዊ ተሞክሮዎች ላይ ያተኩሩ። ከፍተኛ-ደረጃ የደንበኞች አገልግሎት እና የፈጠራ አቅርቦቶች ያቅርቡ
+
+2. Mid Price Bar (Affordable Quality Products)
+English:
+- Trend: Consumers are seeking good value for their money, especially during economic uncertainty. Discounts and promotions drive purchases.
+- Action: Highlight value-for-money and use seasonal sales and bundle offers to stay competitive.
+Amharic:
+ደንበኞችን ይሳቡ:
+- አጽንኦት ይስጡ ለገንዘብ ዋጋ ደንበኛው በተመጣጣኝ ዋጋ ጥሩ ጥራት እንደሚያገኙ አሳይ። ስምምነቱን የበለጠ የተሻለ ለማድረግ ቅናሾች ወይም ነፃ መላኪያ ያቅርቡ።
+- ተወዳዳሪ ሁን:
+  - በዋጋ-ለገንዘብ ላይ ያተኩሩ እና ወቅታዊ ሽያጮችን ይጠቀሙ እና ተወዳዳሪ ሆነው ለመቆየት የጥቅል አቅርቦቶችን ይጠቀሙ።
+
+3. Low Price Bar (Budget Products)
+English:
+- Trend: Budget-conscious consumers are looking for affordable and quick deals. Flash sales and time-limited offers dominate buying behavior.
+- Action: Focus on frequent flash sales and loyalty programs to create urgency and retain customers.
+Amharic:
+ደንበኞችን ይሳቡ:
+- አስቸኳይ ሁኔታን ለመፍጠር እና ፈጣን ግዢዎችን ለማበረታታት የፍላሽ ሽያጮችን ያሂዱ  (የተገደበ ጊዜ ቅናሾች)።
+- አስደመጥ ሁን:
+  - በጣም በጀት ተደርጎ ወይም በአለመው አገልግሎት ይሸልሙ (ለምሳሌ ፣ በሚቀጥለው ግዢ ላይ ቅናሾች)
