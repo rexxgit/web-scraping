@@ -1,5 +1,18 @@
 Recommendations & Suggestions Based on Data Visualization
 
+1. High Price Bar (Premium Products)
+English:
+- Attract Customers:
+  - Offer exclusive deals like limited editions or early access to special collections. This makes the product feel unique and worth the higher price.
+- Stay Competitive:
+  - Provide excellent customer service (fast responses, easy returns) to justify the premium price.
+  - Regularly release new and innovative products to keep customers interested and excited.
+Amharic:
+ደንበኞችን ይሳቡ:
+- እንደ ውስን እትሞች ወይም የልዩ ስብስቦች ቀደምት መዳረሻ ያሉ ልዩ ቅናሾችን ያቅርቡ። ይህ ምርቱ ልዩ እና ከፍተኛ ዋጋ ያለው እንዲሰማው ያደርገዋል.
+- ተወዳዳሪ ሁን:
+  - የፕሪሚየም ዋጋን ትክክለኛነት ለማረጋገጥ እጅግ በጣም ጥሩ የደንበኞች አገልግሎት  (ፈጣን ምላሾች ፣ ቀላል ተመላሾች) ያቅርቡ።
+
 3. Low Price Bar (Budget Products)
 English:
 - Attract Customers:
