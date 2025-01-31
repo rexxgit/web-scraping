@@ -1,56 +1,34 @@
 Trend Analysis for Price Ranges
 
-Number of High Price Products: 2
-Number of Mid Price Products: 1
-Number of Low Price Products: 39
+Number of High Price Products: 8
+Number of Mid Price Products: 2
+Number of Low Price Products: 10
 
 High Price Products (Titles, Prices, Links):
-- Title: Samsung Galaxy s24+, Price: 130000.0, Link: https://engocha.com/classifieds/111485-samsung-galaxy-s24?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=14&utm_campaign=normal
-- Title: samsung s24+, Price: 125000.0, Link: https://engocha.com/classifieds/120181-samsung-s24?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=18&utm_campaign=normal
-
-Mid Price Products (Titles, Prices, Links):
-- Title: surface laptop 4, Price: 60000.0, Link: https://engocha.com/classifieds/110562-surface-laptop-4?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=12&utm_campaign=normal
-
-Low Price Products (Titles, Prices, Links):
 - Title: Zara shoes, Price: 8500.0, Link: https://engocha.com/classifieds/102061-zara-shoes?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=1&utm_campaign=normal
-- Title: manual jar water pump, Price: 750.0, Link: https://engocha.com/classifieds/118541-manual-jar-water-pump?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=2&utm_campaign=normal
-- Title: posture corrector, Price: 1500.0, Link: https://engocha.com/classifieds/114234-posture-corrector?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=3&utm_campaign=normal
-- Title: Kirkland Minoxidil from USA, Price: 1500.0, Link: https://engocha.com/classifieds/100583-kirkland-minoxidil-from-usa?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=4&utm_campaign=normal
 - Title: zara shoes fron spain, Price: 8500.0, Link: https://engocha.com/classifieds/166988-zara-shoes-fron-spain?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=5&utm_campaign=normal
 - Title: Zara original shoes, Price: 8500.0, Link: https://engocha.com/classifieds/100579-zara-original-shoes?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=6&utm_campaign=normal
-- Title: gambol sandals 🩴 shoes, Price: 2999.0, Link: https://engocha.com/classifieds/126306-gambol-sandals-shoes?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=7&utm_campaign=normal
 - Title: zara shoes, Price: 8500.0, Link: https://engocha.com/classifieds/156100-zara-shoes?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=8&utm_campaign=normal
 - Title: pull & bear shoes, Price: 8500.0, Link: https://engocha.com/classifieds/143352-pull-bear-shoes?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=9&utm_campaign=normal
 - Title: pull and bear, Price: 8500.0, Link: https://engocha.com/classifieds/143234-pull-and-bear?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=10&utm_campaign=normal
-- Title: EMS six pack vibrator and fat burner, Price: 1550.0, Link: https://engocha.com/classifieds/131179-ems-six-pack-vibrator-and-fat-burner?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=11&utm_campaign=normal
-- Title: abdominal wheel roller, Price: 4000.0, Link: https://engocha.com/classifieds/116047-abdominal-wheel-roller?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=12&utm_campaign=normal
 - Title: football shoes, Price: 7000.0, Link: https://engocha.com/classifieds/132195-football-shoes?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=13&utm_campaign=normal
-- Title: Total glue gun with 2 Stick, Price: 2100.0, Link: https://engocha.com/classifieds/119317-total-glue-gun-with-2-stick?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=14&utm_campaign=normal
 - Title: football fotsal shoes, Price: 6900.0, Link: https://engocha.com/classifieds/131786-football-fotsal-shoes?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=15&utm_campaign=normal
+
+Mid Price Products (Titles, Prices, Links):
+- Title: gambol sandals 🩴 shoes, Price: 2999.0, Link: https://engocha.com/classifieds/126306-gambol-sandals-shoes?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=7&utm_campaign=normal
+- Title: abdominal wheel roller, Price: 4000.0, Link: https://engocha.com/classifieds/116047-abdominal-wheel-roller?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=12&utm_campaign=normal
+
+Low Price Products (Titles, Prices, Links):
+- Title: manual jar water pump, Price: 750.0, Link: https://engocha.com/classifieds/118541-manual-jar-water-pump?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=2&utm_campaign=normal
+- Title: posture corrector, Price: 1500.0, Link: https://engocha.com/classifieds/114234-posture-corrector?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=3&utm_campaign=normal
+- Title: Kirkland Minoxidil from USA, Price: 1500.0, Link: https://engocha.com/classifieds/100583-kirkland-minoxidil-from-usa?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=4&utm_campaign=normal
+- Title: EMS six pack vibrator and fat burner, Price: 1550.0, Link: https://engocha.com/classifieds/131179-ems-six-pack-vibrator-and-fat-burner?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=11&utm_campaign=normal
+- Title: Total glue gun with 2 Stick, Price: 2100.0, Link: https://engocha.com/classifieds/119317-total-glue-gun-with-2-stick?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=14&utm_campaign=normal
 - Title: finger hand griper, Price: 950.0, Link: https://engocha.com/classifieds/112179-finger-hand-griper?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=16&utm_campaign=normal
 - Title: hairgrow premium for men, Price: 1500.0, Link: https://engocha.com/classifieds/116044-hairgrow-premium-for-men?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=17&utm_campaign=normal
 - Title: foam roller, Price: 1950.0, Link: https://engocha.com/classifieds/116442-foam-roller?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=18&utm_campaign=normal
 - Title: sauna suit workout vest, Price: 950.0, Link: https://engocha.com/classifieds/116045-sauna-suit-workout-vest?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=19&utm_campaign=normal
 - Title: dual wheels roller, Price: 1500.0, Link: https://engocha.com/classifieds/116443-dual-wheels-roller?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=20&utm_campaign=normal
-- Title: Molten ball, Price: 6500.0, Link: https://engocha.com/classifieds/135387-molten-ball?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=21&utm_campaign=normal
-- Title: cania sandals 🩴 shoes, Price: 2900.0, Link: https://engocha.com/classifieds/126307-cania-sandals-shoes?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=22&utm_campaign=normal
-- Title: gym and motor glove, Price: 950.0, Link: https://engocha.com/classifieds/114473-gym-and-motor-glove?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=23&utm_campaign=normal
-- Title: Neo hair lotion 🧴, Price: 2500.0, Link: https://engocha.com/classifieds/100584-neo-hair-lotion?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=24&utm_campaign=normal
-- Title: MIELLE rosemary oil, Price: 2400.0, Link: https://engocha.com/classifieds/117554-mielle-rosemary-oil?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=1&utm_campaign=normal
-- Title: dugana, Price: 3500.0, Link: https://engocha.com/classifieds/129115-dugana?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=2&utm_campaign=normal
-- Title: football shoes soccer, Price: 6900.0, Link: https://engocha.com/classifieds/131441-football-shoes-soccer?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=3&utm_campaign=normal
-- Title: rosemary mint & biotin, Price: 2500.0, Link: https://engocha.com/classifieds/119234-rosemary-mint-biotin?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=4&utm_campaign=normal
-- Title: foam roller, Price: 1950.0, Link: https://engocha.com/classifieds/117242-foam-roller?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=5&utm_campaign=normal
-- Title: Hip thrust and squat barbell pad, Price: 1700.0, Link: https://engocha.com/classifieds/130471-hip-thrust-and-squat-barbell-pad?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=6&utm_campaign=normal
-- Title: kinesiology tape, Price: 950.0, Link: https://engocha.com/classifieds/117555-kinesiology-tape?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=7&utm_campaign=normal
-- Title: puma footsal shoes, Price: 8300.0, Link: https://engocha.com/classifieds/116058-puma-footsal-shoes?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=8&utm_campaign=normal
-- Title: kinesiology tape, Price: 900.0, Link: https://engocha.com/classifieds/100587-kinesiology-tape?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=9&utm_campaign=normal
-- Title: zara original shoes from Spain, Price: 8500.0, Link: https://engocha.com/classifieds/116046-zara-original-shoes-from-spain?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=10&utm_campaign=normal
-- Title: Shaik perfume, Price: 2500.0, Link: https://engocha.com/classifieds/100586-shaik-perfume?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=11&utm_campaign=normal
-- Title: resistance bands set, Price: 950.0, Link: https://engocha.com/classifieds/116050-resistance-bands-set?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=13&utm_campaign=normal
-- Title: sweat belt, Price: 1500.0, Link: https://engocha.com/classifieds/114639-sweat-belt?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=15&utm_campaign=normal
-- Title: NEO HAIR LOTION PARADISE, Price: 3500.0, Link: https://engocha.com/classifieds/118190-neo-hair-lotion-paradise?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=16&utm_campaign=normal
-- Title: sauvage, Price: 2300.0, Link: https://engocha.com/classifieds/100585-sauvage?utm_source=engocha&utm_medium=web&utm_content_dup_removed=&utm_content=seller%20page&utm_position=17&utm_campaign=normal
 
 1. High Price Bar (Premium Products)
 English:
