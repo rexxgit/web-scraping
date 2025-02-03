@@ -25,7 +25,7 @@ def scrape():
         )
         context = browser.new_context(user_agent=user_agent)
         page = context.new_page()
-        page.goto('https://jiji.com.et/sellerpage-jYM8FFmFIUMVwKBqpAr8SPa6')
+        page.goto('https://jiji.com.et/shop/brandmax/shoes')
 
         data = []
         previous_height = 0
