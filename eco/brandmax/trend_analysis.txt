@@ -1,8 +1,8 @@
 Trend Analysis for Price Ranges
 
-Number of High Price Products: 21
-Number of Mid Price Products: 14
-Number of Low Price Products: 5
+Number of High Price Products: 41
+Number of Mid Price Products: 29
+Number of Low Price Products: 10
 
 High Price Products (Titles, Prices, Links):
 - Title: Naked Wolfe Full Black Master Quality, Price: 6499, Link: https://jiji.com.et/arada/shoes/naked-wolfe-full-black-master-quality-moNURWgk0zNMw1pJTeKJiA4m.html?page=1&pos=1&cur_pos=1&ads_per_page=20&ads_count=3107&lid=ID6eRFczVV6m_j43&indexPosition=0
@@ -26,6 +26,26 @@ High Price Products (Titles, Prices, Links):
 - Title: Columbia Waterproof Outdoor Premium Quality, Price: 7499, Link: https://jiji.com.et/bole/shoes/columbia-waterproof-outdoor-premium-quality-2UVYuwWdgGsUR2VNilfjM3d0.html?page=2&pos=9&cur_pos=9&ads_per_page=20&ads_count=3107&lid=ID6eRFczVV6m_j43&indexPosition=8
 - Title: Louis Vuitton LV Trainers 2023 Premium Quality, Price: 6499, Link: https://jiji.com.et/bole/shoes/louis-vuitton-lv-trainers-2023-premium-quality-f17BLqk8cf96yY3LZg5YHdlu.html?page=2&pos=13&cur_pos=13&ads_per_page=20&ads_count=3107&lid=ID6eRFczVV6m_j43&indexPosition=12
 - Title: Adidas Superstar Premium Quality, Price: 5999, Link: https://jiji.com.et/bole/shoes/adidas-superstar-premium-quality-eYR0WmcnqLbPkPa5tp5nHOhD.html?page=2&pos=17&cur_pos=17&ads_per_page=20&ads_count=3107&lid=ID6eRFczVV6m_j43&indexPosition=16
+- Title: Chekich Master Quality, Price: 5999, Link: https://jiji.com.et/addis-ketema/shoes/chekich-master-quality-fi6OHBgY0nZzpg1viS85BExi.html?page=1&pos=1&cur_pos=1&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=0
+- Title: Air Jordan Retro "Camo " Master Quality, Price: 6499, Link: https://jiji.com.et/addis-ketema/shoes/air-jordan-retro-camo-master-quality-ikdCY9DXlvqzk3uHqrOvihri.html?page=1&pos=5&cur_pos=5&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=4
+- Title: USA Timberland Boots Premium Quality, Price: 7499, Link: https://jiji.com.et/bole/shoes/usa-timberland-boots-premium-quality-2HGczSBkJJMZpJHRmLpiU8bM.html?page=1&pos=9&cur_pos=9&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=8
+- Title: Air Jordan 1high Stash Utility Master Quality, Price: 7499, Link: https://jiji.com.et/arada/shoes/air-jordan-1high-stash-utility-master-quality-A3EElKIuWzQnRrYHtsb8GN65.html?page=2&pos=9&cur_pos=9&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=8
+- Title: Vans Knu Skool Master Quality, Price: 5999, Link: https://jiji.com.et/bole/shoes/vans-knu-skool-master-quality-naioMkzF1MHDA4q2PsJpy9Oy.html?page=2&pos=13&cur_pos=13&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=12
+- Title: Under Armour Boots Master Quality, Price: 7499, Link: https://jiji.com.et/bole/shoes/under-armour-boots-master-quality-861UB759bBlMELLBRSIEMXn2.html?page=2&pos=17&cur_pos=17&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=16
+- Title: Air Jordan 1high Premium Quality, Price: 6499, Link: https://jiji.com.et/bole/shoes/air-jordan-1high-premium-quality-5IFpxajd87IyOZ3Ly2ES8P1z.html?page=1&pos=2&cur_pos=2&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=1
+- Title: Converse Allstar Chuck Platforms Premium Quality, Price: 6499, Link: https://jiji.com.et/bole/shoes/converse-allstar-chuck-platforms-premium-quality-vckekH52g9aIryDHG5AKhZP2.html?page=1&pos=6&cur_pos=6&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=5
+- Title: Chekich Master Quality, Price: 5999, Link: https://jiji.com.et/bole/shoes/chekich-master-quality-lhxVVVvX9JYbLEDNn3P2jiiV.html?page=1&pos=10&cur_pos=10&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=9
+- Title: Columbia Waterproof Outdoor Premium Quality, Price: 6999, Link: https://jiji.com.et/bole/shoes/columbia-waterproof-outdoor-premium-quality-hYvRsaLY8xmfYqubdlsQq7Fh.html?page=2&pos=8&cur_pos=8&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=7
+- Title: Nike Blazer Mid'77 Master Quality, Price: 6999, Link: https://jiji.com.et/nifas-silk-lafto/shoes/nike-blazer-mid77-master-quality-kt72vGHmbnt24xdrIFSJq3V3.html?page=2&pos=12&cur_pos=12&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=11
+- Title: Adidas "Beckenbauer Allround "Premium Quality, Price: 6499, Link: https://jiji.com.et/bole/shoes/adidas-beckenbauer-allround-premium-quality-yLxNdbCz9Iuu91Sj6uMnqjkT.html?page=2&pos=16&cur_pos=16&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=15
+- Title: Adidas Yeezy Master Quality, Price: 6999, Link: https://jiji.com.et/kirkos/shoes/adidas-yeezy-master-quality-tY2RNuloEF2fPdeHby2Wm5IB.html?page=1&pos=7&cur_pos=7&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=6
+- Title: Chekich Master Quality, Price: 5999, Link: https://jiji.com.et/bole/shoes/chekich-master-quality-18SzTEwFhEPF5fbNx6KAq7FN.html?page=1&pos=11&cur_pos=11&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=10
+- Title: Skechers "MEMORY FOAM " Master Quality, Price: 5999, Link: https://jiji.com.et/bole/shoes/skechers-memory-foam-master-quality-eRRY36GBEgyWkLsPClMgShQB.html?page=1&pos=15&cur_pos=15&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=14
+- Title: Air Jordan 1high "Patent Bred " Master Quality, Price: 6499, Link: https://jiji.com.et/bole/shoes/air-jordan-1high-patent-bred-master-quality-yqPsoqlEriBGf81TQ8EGRxEJ.html?page=2&pos=15&cur_pos=15&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=14
+- Title: Columbia Waterproof Outdoor Premium Quality, Price: 7499, Link: https://jiji.com.et/bole/shoes/columbia-waterproof-outdoor-premium-quality-dLKvzaK3Cn7pATr79Rs9sqqk.html?page=2&pos=19&cur_pos=19&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=18
+- Title: Men's Classic Leather Shoes Premium Quality, Price: 5999, Link: https://jiji.com.et/addis-ketema/shoes/mens-classic-leather-shoes-premium-quality-41iuAB4k4wTXdNK0r3JC4jLu.html?page=2&pos=1&cur_pos=1&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=0
+- Title: Air Jordan 9 Retro "Cool Grey " Master Quality, Price: 5999, Link: https://jiji.com.et/lideta/shoes/air-jordan-9-retro-cool-grey-master-quality-uBFEY9PCUM8w0WgM9wiAOeoF.html?page=2&pos=5&cur_pos=5&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=4
+- Title: Adidas Yeezy Master Quality, Price: 6499, Link: https://jiji.com.et/bole/shoes/adidas-yeezy-master-quality-5i8VVZqfHXNAi4x00Be1aeQ2.html?page=2&pos=14&cur_pos=14&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=13
 
 Mid Price Products (Titles, Prices, Links):
 - Title: Travis Scott X Jordan 1 Black Phantom Master Quality, Price: 5499, Link: https://jiji.com.et/addis-ketema/shoes/travis-scott-x-jordan-1-black-phantom-master-quality-oBpV03Am3TeT0Uup1HIOu7ej.html?page=1&pos=5&cur_pos=5&ads_per_page=20&ads_count=3107&lid=ID6eRFczVV6m_j43&indexPosition=4
@@ -42,6 +62,21 @@ Mid Price Products (Titles, Prices, Links):
 - Title: Adidas EQT Master Quality, Price: 5499, Link: https://jiji.com.et/bole/shoes/adidas-eqt-master-quality-p2k7AMBqSeYxDrvl7x5u8oLt.html?page=2&pos=12&cur_pos=12&ads_per_page=20&ads_count=3107&lid=ID6eRFczVV6m_j43&indexPosition=11
 - Title: Under Armour Master Quality, Price: 4999, Link: https://jiji.com.et/bole/shoes/under-armour-master-quality-C8dTbdi5OMYlKWJqgneupe8F.html?page=2&pos=16&cur_pos=16&ads_per_page=20&ads_count=3107&lid=ID6eRFczVV6m_j43&indexPosition=15
 - Title: New Balance Sneakers Sneakers Master Quality, Price: 4999, Link: https://jiji.com.et/gullele/shoes/new-balance-sneakers-sneakers-master-quality-uJafAd2X1zvetB1J0Gy7COoS.html?page=2&pos=1&cur_pos=1&ads_per_page=20&ads_count=3107&lid=ID6eRFczVV6m_j43&indexPosition=0
+- Title: Lacoste Powercourt Master Quality, Price: 5499, Link: https://jiji.com.et/bole/shoes/lacoste-powercourt-master-quality-cYp0gzH5zNxOAE2ECTVda4oH.html?page=1&pos=13&cur_pos=13&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=12
+- Title: Adidas Yeezy Boost 350V2 Master Quality, Price: 4999, Link: https://jiji.com.et/addis-ketema/shoes/adidas-yeezy-boost-350v2-master-quality-5W9zY1YB9wyLePMGUVnMYG0v.html?page=1&pos=17&cur_pos=17&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=16
+- Title: Nike Airforce 1 Premium Quality, Price: 5499, Link: https://jiji.com.et/addis-ketema/shoes/nike-airforce-1-premium-quality-3tXVkPjlzIxr01XcDzB54773.html?page=2&pos=2&cur_pos=2&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=1
+- Title: Adidas Lego Master Quality, Price: 4999, Link: https://jiji.com.et/bole/shoes/adidas-lego-master-quality-u34UxavaZSqcyo5iae37uAdL.html?page=2&pos=6&cur_pos=6&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=5
+- Title: Travis Scott X Jordan 1 Black Phantom Master Quality, Price: 5499, Link: https://jiji.com.et/addis-ketema/shoes/travis-scott-x-jordan-1-black-phantom-master-quality-oBpV03Am3TeT0Uup1HIOu7ej.html?page=2&pos=20&cur_pos=20&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=19
+- Title: Converse One Star Premium Quality, Price: 5499, Link: https://jiji.com.et/bole/shoes/converse-one-star-premium-quality-xkdGUjzAcWArQK2d5nXt19Ll.html?page=1&pos=14&cur_pos=14&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=13
+- Title: Puma Premium Quality, Price: 4999, Link: https://jiji.com.et/nifas-silk-lafto/shoes/puma-premium-quality-a6mZ4N96Gx26patBFNSYe9MR.html?page=2&pos=4&cur_pos=4&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=3
+- Title: Nike Airforce Moon Master Quality, Price: 5499, Link: https://jiji.com.et/lideta/shoes/nike-airforce-moon-master-quality-fz6Gefz4O8wxmQe5LaZTkbrV.html?page=1&pos=3&cur_pos=3&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=2
+- Title: Air Jordan 4 Retro "Military Gold" Master Quality, Price: 4999, Link: https://jiji.com.et/addis-ketema/shoes/air-jordan-4-retro-military-gold-master-quality-7Z8mNxLG0aBbqOWdKEnW6kfF.html?page=1&pos=19&cur_pos=19&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=18
+- Title: Nike Air Force 1low Master Quality, Price: 5499, Link: https://jiji.com.et/addis-ketema/shoes/nike-air-force-1low-master-quality-4XjdIcrUF8xkiCw9O8VSxapz.html?page=2&pos=3&cur_pos=3&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=2
+- Title: Lacoste Powercourt Master Quality, Price: 5499, Link: https://jiji.com.et/bole/shoes/lacoste-powercourt-master-quality-fz3QbT1sqgcvx5OBZpF46bYn.html?page=2&pos=7&cur_pos=7&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=6
+- Title: Travis Scott Low Black Phantom Master Quality, Price: 5499, Link: https://jiji.com.et/addis-ketema/shoes/travis-scott-low-black-phantom-master-quality-eTAvsTy4yReNRI8NOju8LWGi.html?page=1&pos=4&cur_pos=4&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=3
+- Title: Chekich Brown Premium Quality, Price: 5499, Link: https://jiji.com.et/bole/shoes/chekich-brown-premium-quality-n7IrqeQ1ZAG4LvK1lxcTDcAX.html?page=1&pos=12&cur_pos=12&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=11
+- Title: VERSACE Master Quality, Price: 5499, Link: https://jiji.com.et/addis-ketema/shoes/versace-master-quality-8SfebQ5eNNwbaSJzjnV98P1O.html?page=1&pos=20&cur_pos=20&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=19
+- Title: Nike Air Force 1 Premium Quality, Price: 5499, Link: https://jiji.com.et/bole/shoes/nike-air-force-1-premium-quality-hjTyrKjf5wfDkcCvSYkGpwyB.html?page=2&pos=18&cur_pos=18&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=17
 
 Low Price Products (Titles, Prices, Links):
 - Title: Valenciaga Master Quality, Price: 3499, Link: https://jiji.com.et/bole/shoes/valenciaga-master-quality-x9ZRReD9JVqfNPIGu42Hl6Cj.html?page=1&pos=9&cur_pos=9&ads_per_page=20&ads_count=3107&lid=ID6eRFczVV6m_j43&indexPosition=8
@@ -49,6 +84,11 @@ Low Price Products (Titles, Prices, Links):
 - Title: Air Jordan 11 Concord Master Quality, Price: 3999, Link: https://jiji.com.et/yeka/shoes/air-jordan-11-concord-master-quality-qaUKIvJ5mSy5jRZxGbTw9vvq.html?page=2&pos=14&cur_pos=14&ads_per_page=20&ads_count=3107&lid=ID6eRFczVV6m_j43&indexPosition=13
 - Title: Adidas Oldschool Master Quality, Price: 3999, Link: https://jiji.com.et/addis-ketema/shoes/adidas-oldschool-master-quality-uSj2yIJWwDU9QvWZAQYpabyv.html?page=2&pos=18&cur_pos=18&ads_per_page=20&ads_count=3107&lid=ID6eRFczVV6m_j43&indexPosition=17
 - Title: Oldschool Adidas Master Quality, Price: 3999, Link: https://jiji.com.et/bole/shoes/oldschool-adidas-master-quality-ben5eIoHfZdxWdeKQrzExq67.html?page=2&pos=20&cur_pos=20&ads_per_page=20&ads_count=3107&lid=ID6eRFczVV6m_j43&indexPosition=19
+- Title: Air Jordan 4 Retro "PSG " Paris Master Quality, Price: 3999, Link: https://jiji.com.et/bole/shoes/air-jordan-4-retro-psg-paris-master-quality-7Fi4ADvnbsWDfqLB0PEw5fHA.html?page=1&pos=18&cur_pos=18&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=17
+- Title: Vans Oldschool Boots Master Quality, Price: 3499, Link: https://jiji.com.et/bole/shoes/vans-oldschool-boots-master-quality-B7mPfAVF8F3ng3CzIxXWJxGT.html?page=2&pos=11&cur_pos=11&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=10
+- Title: Skechers Go Walk Master Quality, Price: 4499, Link: https://jiji.com.et/bole/shoes/skechers-go-walk-master-quality-3PcUQrcTnCZx3ycA39Pq7IHQ.html?page=1&pos=8&cur_pos=8&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=7
+- Title: Alexander Mc Queen Women's, Price: 3999, Link: https://jiji.com.et/bole/shoes/alexander-mc-queen-womens-vbExTNkC30ElKsyXvRNbWYQg.html?page=1&pos=16&cur_pos=16&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=15
+- Title: Nike SB Master Quality, Price: 3999, Link: https://jiji.com.et/addis-ketema/shoes/nike-sb-master-quality-gbNZfzw6E7upXGwlP6utLUpQ.html?page=2&pos=10&cur_pos=10&ads_per_page=20&ads_count=3107&lid=Wl3ShcDKFG5dhiYu&indexPosition=9
 
 1. High Price Bar (Premium Products)
 English:
