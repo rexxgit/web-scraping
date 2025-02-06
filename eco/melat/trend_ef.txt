@@ -1,6 +1,6 @@
 Trend Analysis for Price Ranges
 
-Number of High Price Products: 12
+Number of High Price Products: 15
 Number of Mid Price Products: 1
 Number of Low Price Products: 7
 
@@ -15,20 +15,23 @@ High Price Products (Titles, Prices, Links):
 - Title: New balance 327, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/524943953936058/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike Gortex, Price: 8000.0, Link: https://web.facebook.com/marketplace/item/1671035670114255/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Jordan 5, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/1260358011695957/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
-- Title: Adidas Sprzial, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/1304393264220681/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike Air Jordan 1, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/1281605623071184/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Timberland Boots Shose, Price: 8500.0, Link: https://web.facebook.com/marketplace/item/608851461854890/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Timberland boots shose, Price: 8500.0, Link: https://web.facebook.com/marketplace/item/1151827329664418/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Adidas Spezial, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/1150234603165794/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Adidas Sprzial, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/1304393264220681/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 
 Mid Price Products (Titles, Prices, Links):
 - Title: Nike Air Jordan 1, Price: 6000.0, Link: https://web.facebook.com/marketplace/item/1401353467544464/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 
 Low Price Products (Titles, Prices, Links):
+- Title: All Star, Price: 4500.0, Link: https://web.facebook.com/marketplace/item/2031248643969424/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike Air force for women's, Price: 5000.0, Link: https://web.facebook.com/marketplace/item/1780185026148376/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Skechers man,s Shose, Price: 5000.0, Link: https://web.facebook.com/marketplace/item/1414205846620558/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Sketchers man,s Shose, Price: 5000.0, Link: https://web.facebook.com/marketplace/item/1205515964474183/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Skechers Mans Shose, Price: 5000.0, Link: https://web.facebook.com/marketplace/item/928978309390194/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Sketchers for women's, Price: 4000.0, Link: https://web.facebook.com/marketplace/item/2593045327552912/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Sketches for women's, Price: 4000.0, Link: https://web.facebook.com/marketplace/item/9122862291164851/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
-- Title: All Star, Price: 4500.0, Link: https://web.facebook.com/marketplace/item/2031248643969424/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 
 1. High Price Bar (Premium Products)
 English:
