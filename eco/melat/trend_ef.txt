@@ -1,7 +1,7 @@
 Trend Analysis for Price Ranges
 
-Number of High Price Products: 17
-Number of Mid Price Products: 8
+Number of High Price Products: 20
+Number of Mid Price Products: 12
 Number of Low Price Products: 4
 
 High Price Products (Titles, Prices, Links):
@@ -22,6 +22,9 @@ High Price Products (Titles, Prices, Links):
 - Title: Adidas Sprzial, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/1304393264220681/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike P-6000, Price: 8000.0, Link: https://web.facebook.com/marketplace/item/1711409326104248/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Converse all Star shoe, Price: 6499.0, Link: https://web.facebook.com/marketplace/item/2383340818719919/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: PUMA Man Shose, Price: 7500.0, Link: https://web.facebook.com/marketplace/item/1133644474927444/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike air max, Price: 8000.0, Link: https://web.facebook.com/marketplace/item/653325733934496/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Adidas Samba, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/2097141770805198/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 
 Mid Price Products (Titles, Prices, Links):
 - Title: Nike Air Jordan 1, Price: 6000.0, Link: https://web.facebook.com/marketplace/item/1401353467544464/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
@@ -32,6 +35,10 @@ Mid Price Products (Titles, Prices, Links):
 - Title: Adidas shoes, Price: 5999.0, Link: https://web.facebook.com/marketplace/item/2070227930066941/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Original Tiger Woman's Shoes, Price: 6000.0, Link: https://web.facebook.com/marketplace/item/896080789268069/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Leather material man's Shoes, Price: 5000.0, Link: https://web.facebook.com/marketplace/item/9196488523778018/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Sketchres Mans shose, Price: 5500.0, Link: https://web.facebook.com/marketplace/item/1255219602239920/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Sketchres mans shose, Price: 5500.0, Link: https://web.facebook.com/marketplace/item/1153082585868467/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Soft Go mans shose, Price: 5500.0, Link: https://web.facebook.com/marketplace/item/471408079362089/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Soft go mans shose, Price: 5500.0, Link: https://web.facebook.com/marketplace/item/1291000392162719/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 
 Low Price Products (Titles, Prices, Links):
 - Title: All Star, Price: 4500.0, Link: https://web.facebook.com/marketplace/item/2031248643969424/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
