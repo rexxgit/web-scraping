@@ -1,7 +1,7 @@
 Trend Analysis for Price Ranges
 
-Number of High Price Products: 27
-Number of Mid Price Products: 15
+Number of High Price Products: 36
+Number of Mid Price Products: 16
 Number of Low Price Products: 4
 
 High Price Products (Titles, Prices, Links):
@@ -32,6 +32,15 @@ High Price Products (Titles, Prices, Links):
 - Title: Asics mans shose, Price: 8000.0, Link: https://web.facebook.com/marketplace/item/1718233092069334/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Acics mans shose, Price: 8000.0, Link: https://web.facebook.com/marketplace/item/620084944061793/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Air Jordan 4 mans shose, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/627920956715120/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike Gortex, Price: 8000.0, Link: https://web.facebook.com/marketplace/item/1133831127968857/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike mans shose, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/1577159259607823/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Puma woman's shoes, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/518803641227801/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike man,s shose, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/616266954354346/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike Air force 1, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/8474747772627076/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike air force, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/3236697639823723/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Jordan 5, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/601153162891149/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Tiger women shose, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/2093688384412755/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike Air force, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/619399780824614/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 
 Mid Price Products (Titles, Prices, Links):
 - Title: Nike Air Jordan 1, Price: 6000.0, Link: https://web.facebook.com/marketplace/item/1401353467544464/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
@@ -49,6 +58,7 @@ Mid Price Products (Titles, Prices, Links):
 - Title: Adidas Forum, Price: 6000.0, Link: https://web.facebook.com/marketplace/item/627869740185328/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Covers all star, Price: 5000.0, Link: https://web.facebook.com/marketplace/item/1842692419799984/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike air force, Price: 5500.0, Link: https://web.facebook.com/marketplace/item/1336255067417675/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike Air Jordan 1, Price: 6000.0, Link: https://web.facebook.com/marketplace/item/1002913555088159/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 
 Low Price Products (Titles, Prices, Links):
 - Title: All Star, Price: 4500.0, Link: https://web.facebook.com/marketplace/item/2031248643969424/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
