@@ -1,7 +1,7 @@
 Trend Analysis for Price Ranges
 
-Number of High Price Products: 38
-Number of Mid Price Products: 23
+Number of High Price Products: 39
+Number of Mid Price Products: 24
 Number of Low Price Products: 4
 
 High Price Products (Titles, Prices, Links):
@@ -41,8 +41,9 @@ High Price Products (Titles, Prices, Links):
 - Title: Jordan 5, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/601153162891149/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Tiger women shose, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/2093688384412755/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike Air force, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/619399780824614/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
-- Title: Nike Air max, Price: 7500.0, Link: https://web.facebook.com/marketplace/item/944188567694529/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike Air Max, Price: 8000.0, Link: https://web.facebook.com/marketplace/item/940576458274208/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Ecco mans shose, Price: 8000.0, Link: https://web.facebook.com/marketplace/item/2069066290190060/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike Air max, Price: 7500.0, Link: https://web.facebook.com/marketplace/item/944188567694529/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 
 Mid Price Products (Titles, Prices, Links):
 - Title: Nike Air Jordan 1, Price: 6000.0, Link: https://web.facebook.com/marketplace/item/1401353467544464/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
@@ -61,13 +62,14 @@ Mid Price Products (Titles, Prices, Links):
 - Title: Covers all star, Price: 5000.0, Link: https://web.facebook.com/marketplace/item/1842692419799984/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike air force, Price: 5500.0, Link: https://web.facebook.com/marketplace/item/1336255067417675/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike Air Jordan 1, Price: 6000.0, Link: https://web.facebook.com/marketplace/item/1002913555088159/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Skechers Gorun, Price: 5000.0, Link: https://web.facebook.com/marketplace/item/1889520911811020/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike mans Shoses, Price: 5500.0, Link: https://web.facebook.com/marketplace/item/496321390215115/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike Shose, Price: 5500.0, Link: https://web.facebook.com/marketplace/item/1319328479185763/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike air force 1, Price: 5500.0, Link: https://web.facebook.com/marketplace/item/622714560365591/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike air max, Price: 5000.0, Link: https://web.facebook.com/marketplace/item/1830736084330128/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: New Balance 530, Price: 6000.0, Link: https://web.facebook.com/marketplace/item/604017499093103/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike Air force 1, Price: 5500.0, Link: https://web.facebook.com/marketplace/item/608228071811607/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Skechers GoRun, Price: 5000.0, Link: https://web.facebook.com/marketplace/item/1836773803756289/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
-- Title: Skechers Gorun, Price: 5000.0, Link: https://web.facebook.com/marketplace/item/1889520911811020/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
-- Title: Nike mans Shoses, Price: 5500.0, Link: https://web.facebook.com/marketplace/item/496321390215115/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
-- Title: Nike Shose, Price: 5500.0, Link: https://web.facebook.com/marketplace/item/1319328479185763/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 
 Low Price Products (Titles, Prices, Links):
 - Title: All Star, Price: 4500.0, Link: https://web.facebook.com/marketplace/item/2031248643969424/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
