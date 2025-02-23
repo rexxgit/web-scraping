@@ -1,7 +1,7 @@
 Trend Analysis for Price Ranges
 
-Number of High Price Products: 43
-Number of Mid Price Products: 26
+Number of High Price Products: 45
+Number of Mid Price Products: 30
 Number of Low Price Products: 5
 
 High Price Products (Titles, Prices, Links):
@@ -44,10 +44,12 @@ High Price Products (Titles, Prices, Links):
 - Title: Nike Air Max, Price: 8000.0, Link: https://web.facebook.com/marketplace/item/940576458274208/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Ecco mans shose, Price: 8000.0, Link: https://web.facebook.com/marketplace/item/2069066290190060/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike Air max, Price: 7500.0, Link: https://web.facebook.com/marketplace/item/944188567694529/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
-- Title: Jordan 3, Price: 7500.0, Link: https://web.facebook.com/marketplace/item/1425263268436022/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
-- Title: Lowa mans shose, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/980726150666533/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Adidas Superstar, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/530303569550766/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike M2k, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/931612482467718/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Jordan 11, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/510010431754779/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Jordan 3, Price: 7500.0, Link: https://web.facebook.com/marketplace/item/1425263268436022/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Lowa mans shose, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/980726150666533/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Adidas samba, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/610293695198814/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 
 Mid Price Products (Titles, Prices, Links):
 - Title: Nike Air Jordan 1, Price: 6000.0, Link: https://web.facebook.com/marketplace/item/1401353467544464/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
@@ -76,6 +78,10 @@ Mid Price Products (Titles, Prices, Links):
 - Title: Skechers GoRun, Price: 5000.0, Link: https://web.facebook.com/marketplace/item/1836773803756289/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Covers all Star, Price: 5500.0, Link: https://web.facebook.com/marketplace/item/606963388870664/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Adidas Terrex, Price: 5000.0, Link: https://web.facebook.com/marketplace/item/1558075528184553/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Sandal Unisex shose, Price: 5500.0, Link: https://web.facebook.com/marketplace/item/1107508601176207/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Sandal unisex ahose, Price: 5500.0, Link: https://web.facebook.com/marketplace/item/4342989422648220/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike SB, Price: 5000.0, Link: https://web.facebook.com/marketplace/item/648189964278678/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: New balance 530, Price: 5000.0, Link: https://web.facebook.com/marketplace/item/1290062532105175/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 
 Low Price Products (Titles, Prices, Links):
 - Title: All Star, Price: 4500.0, Link: https://web.facebook.com/marketplace/item/2031248643969424/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
