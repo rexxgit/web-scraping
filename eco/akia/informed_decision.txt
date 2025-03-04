@@ -13,18 +13,3 @@ Amharic:
 - ተወዳዳሪ ሁን:
   - የፕሪሚየም ዋጋን ትክክለኛነት ለማረጋገጥ እጅግ በጣም ጥሩ የደንበኞች አገልግሎት  (ፈጣን ምላሾች ፣ ቀላል ተመላሾች) ያቅርቡ።
 
-3. Low Price Bar (Budget Products)
-English:
-- Attract Customers:
-  - Run flash sales (limited-time discounts) to create urgency and encourage quick purchases.
-  - Use time-limited offers to make customers feel they’re getting a great deal that won’t last.
-- Stay Competitive:
-  - Reduce costs by negotiating with suppliers for lower prices or using more efficient methods.
-  - Reward repeat customers with loyalty programs (e.g., discounts on next purchase).
-Amharic:
-ደንበኞችን ይሳቡ:
-- አስቸኳይ ሁኔታን ለመፍጠር እና ፈጣን ግዢዎችን ለማበረታታት የፍላሽ ሽያጮችን ይወገዱ (የተገደበ ጊዜ ቅናሾች).
-- ደንበኞች የማይዘልቅ ትልቅ ነገር እያገኙ እንደሆነ እንዲሰማቸው ለማድረግ ጊዜ-የተገደበ ቅናሾችን ይጠቀሙ.
-- ተወዳዳሪ ሁን:
-  - ወጪን ይቀንሱ ከአቅራቢዎች ጋር በዝቅተኛ ዋጋ በመደራደር ወይም ይበልጥ ቀልጣፋ ዘዴዎችን በመጠቀም.
-  - ተደጋጋሚ ደንበኞችን በ የታማኝነት ፕሮግራሞች ይሸልሙ (ለምሳሌ ፣ በሚቀጥለው ግዢ ላይ ቅናሾች)።
