@@ -1,6 +1,6 @@
 Trend Analysis for Price Ranges
 
-Number of High Price Products: 47
+Number of High Price Products: 48
 Number of Mid Price Products: 31
 Number of Low Price Products: 5
 
@@ -49,6 +49,7 @@ High Price Products (Titles, Prices, Links):
 - Title: Jordan 3, Price: 7500.0, Link: https://web.facebook.com/marketplace/item/1425263268436022/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Lowa mans shose, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/980726150666533/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Adidas samba, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/610293695198814/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Puma takati, Price: 7500.0, Link: https://web.facebook.com/marketplace/item/951450607113958/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike Dunk Low, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/1139764357461202/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: New balance 530, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/1304669134084327/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Jordan 11, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/510010431754779/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
