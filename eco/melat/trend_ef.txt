@@ -1,6 +1,6 @@
 Trend Analysis for Price Ranges
 
-Number of High Price Products: 53
+Number of High Price Products: 54
 Number of Mid Price Products: 33
 Number of Low Price Products: 5
 
@@ -53,11 +53,12 @@ High Price Products (Titles, Prices, Links):
 - Title: Nike Dunk Low, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/1139764357461202/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: New balance 530, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/1304669134084327/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Jordan 11, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/510010431754779/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Adidas Spezial, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/1689901318610309/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
+- Title: Nike Air force 1, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/1011342897577107/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike Air force, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/3090509001100861/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: New balance 1906, Price: 8000.0, Link: https://web.facebook.com/marketplace/item/663552099530572/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: New balance 610, Price: 7000.0, Link: https://web.facebook.com/marketplace/item/2425282574504460/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 - Title: Nike air max, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/1200826968422037/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
-- Title: Adidas Spezial, Price: 6500.0, Link: https://web.facebook.com/marketplace/item/1689901318610309/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
 
 Mid Price Products (Titles, Prices, Links):
 - Title: Nike Air Jordan 1, Price: 6000.0, Link: https://web.facebook.com/marketplace/item/1401353467544464/?ref=marketplace_profile&referral_code=undefined&__tn__=!%3AD
