@@ -10,12 +10,12 @@ import matplotlib.pyplot as plt
 output_path = "eco/eph"  # Base output folder
 
 # Subdirectories
-plots_path = os.path.join(output_path, "eph.jpeg")
-csv_path = os.path.join(output_path, "eph.csv")
-popular_products_path = os.path.join(output_path, "popular_products.csv")
-trend_analysis_path = os.path.join(output_path, "trend_analysis.txt")
-informed_decisions_path = os.path.join(output_path, "informed_decisions.txt")
-top_keywords_path = os.path.join(output_path, "top_keywords.txt")
+plots_path = os.path.join(output_path, "plots")
+csv_path = os.path.join(output_path, "csv_files")
+popular_products_path = os.path.join(output_path, "popular_products")
+trend_analysis_path = os.path.join(output_path, "trend_analysis")
+informed_decisions_path = os.path.join(output_path, "informed_decisions")
+top_keywords_path = os.path.join(output_path, "top_keywords")
 
 # Create output directories
 os.makedirs(plots_path, exist_ok=True)
@@ -161,7 +161,7 @@ def extract_frequent_keywords(titles):
         all_keywords.extend(words)
 
     keyword_counts = Counter(all_keywords).most_common(10)
-    
+
     # Save keywords to a text file
     try:
         with open(os.path.join(top_keywords_path, "top_keywords.txt"), "w") as file:
@@ -170,7 +170,7 @@ def extract_frequent_keywords(titles):
         write_to_file("status.log", "Top keywords saved to top_keywords.txt")
     except Exception as e:
         write_to_file("errors.log", f"Error saving keywords: {e}")
-    
+
     return keyword_counts
 
 # Function to extract popular products based on title frequency after trend analysis
@@ -197,7 +197,7 @@ def generate_dynamic_trend_analysis(prices, item_details):
         plt.xlabel('Price (ETB)')
         plt.ylabel('Number of Listings')
         plt.grid(True)
-        plt.savefig(os.path.join(plots_path, "price_distribution.png"))
+        plt.savefig(os.path.join(plots_path, "price_distribution.jpeg"))
         plt.close()
 
         bin_width = bins[1] - bins[0]
@@ -219,14 +219,14 @@ def generate_dynamic_trend_analysis(prices, item_details):
 
         recommendations = generate_recommendations(dominant_category)
 
-        with open(os.path.join(informed_decisions_path, "informed_decisions2.txt"), "w") as file:
+        with open(os.path.join(informed_decisions_path, "informed_decisions.txt"), "w") as file:
             file.write(f"Dynamic Trend Analysis: Dominant Price Category: {dominant_category.capitalize()} Products\n")
             file.write("=" * 50 + "\n")
             file.write(recommendations)
             file.write("=" * 50 + "\n")
             file.write("End of Dynamic Trend Analysis\n")
 
-        write_to_file("status.log", "Informed decisions saved to informed_decisions2.txt")
+        write_to_file("status.log", "Informed decisions saved to informed_decisions.txt")
 
     except Exception as e:
         write_to_file("errors.log", f"Error generating trend analysis: {e}")
@@ -283,7 +283,7 @@ items_data, prices_data, titles_data = scrape_facebook_marketplace(keywords=keyw
 save_to_csv(items_data)
 
 # Load popular titles from CSV
-popular_titles = load_popular_titles(os.path.join(csv_path, 'popular_products.csv'))
+popular_titles = load_popular_titles(os.path.join(popular_products_path, 'popular_products.csv'))
 
 # Extract keywords from titles and save to a text file
 keywords_data = extract_frequent_keywords(titles_data)
