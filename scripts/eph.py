@@ -270,23 +270,6 @@ def generate_recommendations(dominant_category):
         )
     return recommendations
 
-# Function to generate an HTML file with clickable links to product listings
-def generate_product_links_file(item_details):
-    html_content = "<html><head><title>Product Listings</title></head><body>"
-    html_content += "<h1>Clickable Links to Product Listings</h1>"
-    
-    for item in item_details:
-        title = item['title']
-        link = item['link']
-        html_content += f'<p><a href="{link}" target="_blank">{title}</a> - Price: {item["price"]}, Location: {item["location"]}</p>'
-    
-    html_content += "</body></html>"
-    
-    with open(os.path.join(output_path, "product_links.html"), "w") as link_file:
-        link_file.write(html_content)
-
-    write_to_file("status.log", "Product links file generated: product_links.html")
-
 # Workflow execution
 keywords = ["leather shoes", "boots", "shoes for men", "shoes for women"]
 items_data, prices_data, titles_data = scrape_facebook_marketplace(keywords=keywords)
@@ -309,5 +292,4 @@ popular_products = extract_popular_products_after_analysis(titles_data, items_da
 # Save popular products to a CSV file
 save_popular_products_to_csv(popular_products)
 
-# Generate an HTML file with clickable links to the product listings
-generate_product_links_file(items_data)
+# Note: generate_product_links_file function and its call have been removed.
