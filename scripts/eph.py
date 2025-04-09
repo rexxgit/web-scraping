@@ -9,25 +9,20 @@ import matplotlib.pyplot as plt
 # Define the main output path
 output_path = "eco/eph"  # Base output folder
 
-# Subdirectories
-plots_path = os.path.join(output_path, "plots")
-csv_path = os.path.join(output_path, "csv_files")
-popular_products_path = os.path.join(output_path, "popular_products")
-trend_analysis_path = os.path.join(output_path, "trend_analysis")
-informed_decisions_path = os.path.join(output_path, "informed_decisions")
-top_keywords_path = os.path.join(output_path, "top_keywords")
+# Ensure the output directory exists
+os.makedirs(output_path, exist_ok=True)
 
-# Create output directories
-os.makedirs(plots_path, exist_ok=True)
-os.makedirs(csv_path, exist_ok=True)
-os.makedirs(popular_products_path, exist_ok=True)
-os.makedirs(trend_analysis_path, exist_ok=True)
-os.makedirs(informed_decisions_path, exist_ok=True)
-os.makedirs(top_keywords_path, exist_ok=True)
+# File paths
+plots_path = os.path.join(output_path, "eph.jpeg")  # For storing plots
+csv_file_path = os.path.join(output_path, "eph.csv")  # For storing main CSV data
+popular_products_file_path = os.path.join(output_path, "popular_products.csv")  # For popular products
+trend_analysis_file_path = os.path.join(output_path, "trend_analysis.txt")  # For trend analysis
+informed_decisions_file_path = os.path.join(output_path, "informed_decisions.txt")  # For informed decisions
+top_keywords_file_path = os.path.join(output_path, "top_keywords.txt")  # For top keywords
 
-# Replace print statements with file writing
-def write_to_file(filename, content, path=output_path):
-    with open(os.path.join(path, filename), 'a') as f:
+# Function to replace print statements with file writing
+def write_to_file(filename, content):
+    with open(os.path.join(output_path, filename), 'a') as f:
         f.write(content + "\n")
 
 # Function to load popular product titles from a CSV (without pandas)
@@ -41,12 +36,12 @@ def load_popular_titles(csv_file):
         return []
 
 # Function to save data to CSV
-def save_to_csv(item_details, filename="boots4.csv"):
+def save_to_csv(item_details, filename="eph.csv"):
     try:
         fieldnames = ['title', 'price', 'location', 'link']
-        file_exists = os.path.isfile(os.path.join(csv_path, filename))
+        file_exists = os.path.isfile(os.path.join(output_path, filename))
 
-        with open(os.path.join(csv_path, filename), mode='a', newline='', encoding='utf-8') as file:
+        with open(os.path.join(output_path, filename), mode='a', newline='', encoding='utf-8') as file:
             writer = csv.DictWriter(file, fieldnames=fieldnames)
             if not file_exists:
                 writer.writeheader()
@@ -59,9 +54,9 @@ def save_to_csv(item_details, filename="boots4.csv"):
         write_to_file("errors.log", f"Error saving data to CSV: {e}")
 
 # Function to save tailored titles to a text file
-def save_tailored_titles_to_txt(titles, filename="tailored_titles.txt"):
+def save_tailored_titles_to_txt(titles, filename="top_keywords.txt"):
     try:
-        with open(os.path.join(top_keywords_path, filename), "w") as file:
+        with open(os.path.join(output_path, filename), "w") as file:
             for title in titles:
                 file.write(f"{title}\n")
         write_to_file("status.log", f"Tailored titles saved successfully to {filename}")
@@ -72,9 +67,9 @@ def save_tailored_titles_to_txt(titles, filename="tailored_titles.txt"):
 def save_popular_products_to_csv(popular_products, filename="popular_products.csv"):
     try:
         fieldnames = ['title', 'frequency', 'link', 'price']
-        file_exists = os.path.isfile(os.path.join(popular_products_path, filename))
+        file_exists = os.path.isfile(os.path.join(output_path, filename))
 
-        with open(os.path.join(popular_products_path, filename), mode='a', newline='', encoding='utf-8') as file:
+        with open(os.path.join(output_path, filename), mode='a', newline='', encoding='utf-8') as file:
             writer = csv.DictWriter(file, fieldnames=fieldnames)
             if not file_exists:
                 writer.writeheader()
@@ -164,7 +159,7 @@ def extract_frequent_keywords(titles):
 
     # Save keywords to a text file
     try:
-        with open(os.path.join(top_keywords_path, "top_keywords.txt"), "w") as file:
+        with open(top_keywords_file_path, "w") as file:
             for keyword, count in keyword_counts:
                 file.write(f"{keyword}: {count}\n")
         write_to_file("status.log", "Top keywords saved to top_keywords.txt")
@@ -183,7 +178,7 @@ def extract_popular_products_after_analysis(titles, item_details):
         matched_items = [item for item in item_details if item['title'] == title]
         if matched_items:
             for item in matched_items:
-                popular_items.append((title, frequency, item['link'], item['price']))  # Now also include the price
+                popular_items.append((title, frequency, item['link'], item['price']))  # Include the price
 
     return popular_items
 
@@ -197,7 +192,7 @@ def generate_dynamic_trend_analysis(prices, item_details):
         plt.xlabel('Price (ETB)')
         plt.ylabel('Number of Listings')
         plt.grid(True)
-        plt.savefig(os.path.join(plots_path, "price_distribution.jpeg"))
+        plt.savefig(plots_path)  # Save plot directly to designated JPEG file
         plt.close()
 
         bin_width = bins[1] - bins[0]
@@ -219,7 +214,7 @@ def generate_dynamic_trend_analysis(prices, item_details):
 
         recommendations = generate_recommendations(dominant_category)
 
-        with open(os.path.join(informed_decisions_path, "informed_decisions.txt"), "w") as file:
+        with open(informed_decisions_file_path, "w") as file:
             file.write(f"Dynamic Trend Analysis: Dominant Price Category: {dominant_category.capitalize()} Products\n")
             file.write("=" * 50 + "\n")
             file.write(recommendations)
@@ -283,7 +278,7 @@ items_data, prices_data, titles_data = scrape_facebook_marketplace(keywords=keyw
 save_to_csv(items_data)
 
 # Load popular titles from CSV
-popular_titles = load_popular_titles(os.path.join(popular_products_path, 'popular_products.csv'))
+popular_titles = load_popular_titles(popular_products_file_path)
 
 # Extract keywords from titles and save to a text file
 keywords_data = extract_frequent_keywords(titles_data)
