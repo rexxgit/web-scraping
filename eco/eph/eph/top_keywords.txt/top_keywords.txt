@@ -1,0 +1,3 @@
+boots: 50
+women: 20
+fashion: 10
