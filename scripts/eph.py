@@ -7,7 +7,7 @@ from playwright.sync_api import sync_playwright
 import matplotlib.pyplot as plt
 
 # Define the main output path
-output_path = "eph/"  # Base output folder
+output_path = "eco/eph"  # Base output folder
 
 # Subdirectories
 plots_path = os.path.join(output_path, "eph/eph.jpeg")
