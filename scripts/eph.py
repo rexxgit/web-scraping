@@ -10,12 +10,12 @@ import matplotlib.pyplot as plt
 output_path = "eco/eph"  # Base output folder
 
 # Subdirectories
-plots_path = os.path.join(output_path, "eph/eph.jpeg")
-csv_path = os.path.join(output_path, "eph/eph.csv")
-popular_products_path = os.path.join(output_path, "eph/popular_products.csv")
-trend_analysis_path = os.path.join(output_path, "eph/trend_analysis.txt")
-informed_decisions_path = os.path.join(output_path, "eph/informed_decisions.txt")
-top_keywords_path = os.path.join(output_path, "eph/top_keywords.txt")
+plots_path = os.path.join(output_path, "eph.jpeg")
+csv_path = os.path.join(output_path, "eph.csv")
+popular_products_path = os.path.join(output_path, "popular_products.csv")
+trend_analysis_path = os.path.join(output_path, "trend_analysis.txt")
+informed_decisions_path = os.path.join(output_path, "informed_decisions.txt")
+top_keywords_path = os.path.join(output_path, "top_keywords.txt")
 
 # Create output directories
 os.makedirs(plots_path, exist_ok=True)
