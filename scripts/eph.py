@@ -5,7 +5,7 @@ import time
 from collections import Counter
 from playwright.sync_api import sync_playwright
 import matplotlib.pyplot as plt
-from textblob import Word  # Importing TextBlob's Word for synonym handling
+from textblob import Word
 import random
 
 # Constants for price thresholds
@@ -13,37 +13,33 @@ MIN_PRICE = 1800
 MAX_PRICE = 3500
 
 # Define the main output path
-output_path = "web-scraping/"  # Base output folder
+output_path = "eco/eph"  # Base output folder
 
-# Ensure the output directory exists
-os.makedirs(output_path, exist_ok=True)
+# Function to ensure the output directory exists
+def ensure_output_directory():
+    if not os.path.exists(output_path):
+        os.makedirs(output_path)
 
-# File paths
-plots_path = os.path.join(output_path, "test.jpeg")  # For storing plots
-csv_file_path = os.path.join(output_path, "test.csv")  # For storing main CSV data
-popular_products_file_path = os.path.join(output_path, "popular_products.csv")  # For popular products
-trend_analysis_file_path = os.path.join(output_path, "trend_analysis.txt")  # For trend analysis
-informed_decisions_file_path = os.path.join(output_path, "informed_decisions.txt")  # For informed decisions
-top_keywords_file_path = os.path.join(output_path, "top_keywords.txt")  # For top keywords
-tailored_keywords_file_path = os.path.join(output_path, "tailored_keywords.txt")  # For tailored keywords
-
-# Function to replace print statements with file writing
+# Function to replace print statements with file writing, ensuring the output directory exists
 def write_to_file(filename, content):
+    ensure_output_directory()  # Ensure the output directory exists
     with open(os.path.join(output_path, filename), 'a', encoding='utf-8') as f:
         f.write(content + "\n")
 
 # Function to load popular product titles from a CSV (without pandas)
 def load_popular_titles(csv_file):
+    ensure_output_directory()  # Ensure the output directory exists
     try:
         with open(csv_file, mode='r', encoding='utf-8') as file:
             reader = csv.DictReader(file)
-            return [row['title'] for row in reader]  # Assuming the CSV has a column named 'title'
+            return [row['title'] for row in reader]
     except Exception as e:
         write_to_file("errors.log", f"Error loading popular titles: {e}")
         return []
 
 # Function to save data to CSV
 def save_to_csv(item_details, filename="eph.csv"):
+    ensure_output_directory()  # Ensure the output directory exists
     try:
         fieldnames = ['title', 'price', 'location', 'link']
         file_exists = os.path.isfile(os.path.join(output_path, filename))
@@ -62,6 +58,7 @@ def save_to_csv(item_details, filename="eph.csv"):
 
 # Function to save tailored titles to a text file
 def save_tailored_titles_to_txt(titles, filename="tailored_keywords.txt"):
+    ensure_output_directory()  # Ensure the output directory exists
     try:
         with open(os.path.join(output_path, filename), "a", encoding='utf-8') as file:
             for title in titles:
@@ -72,6 +69,7 @@ def save_tailored_titles_to_txt(titles, filename="tailored_keywords.txt"):
 
 # Function to save popular products to CSV
 def save_popular_products_to_csv(popular_products, filename="popular_products.csv"):
+    ensure_output_directory()  # Ensure the output directory exists
     try:
         fieldnames = ['title', 'frequency', 'link', 'price']
         file_exists = os.path.isfile(os.path.join(output_path, filename))
@@ -171,34 +169,33 @@ def get_synonyms(word):
 def generate_tailored_titles(item):
     titles = []
     title = item['title']
-    price_value = int(item['price'].split('ETB')[1].strip().replace(',', ''))  # Getting the price value
+    price_value = int(item['price'].split('ETB')[1].strip().replace(',', ''))  
     link = item['link']
 
-    # Generate some synonyms for the title
     synonyms = get_synonyms(title)
     random_synonym1 = random.choice(synonyms)
     random_synonym2 = random.choice(synonyms)
-    
-    while random_synonym2 == random_synonym1:  # Ensure second synonym is different
+
+    while random_synonym2 == random_synonym1:
         random_synonym2 = random.choice(synonyms)
 
-    # Choose a template based on price range
-    if 2800 <= price_value <= 3500:  # High Price Range
+    if 2800 <= price_value <= 3500:
         titles.append(f"Premium {random_synonym1} | {title} for just ETB {price_value} — perfect for discerning professionals. Link: {link}")
         titles.append(f"Exclusive offer: {random_synonym2} at ETB {price_value}. Customizable options available! Link: {link}")
 
-    elif 2200 <= price_value < 2800:  # Mid Price Range
+    elif 2200 <= price_value < 2800:
         titles.append(f"Stylish {random_synonym1} | {title} for ETB {price_value}. Limited time only! Link: {link}")
         titles.append(f"Seasonal Sale on {random_synonym2}! Now just ETB {price_value}. Link: {link}")
 
-    else:  # Low Price Range
+    else:
         titles.append(f"Affordable {random_synonym1} starting at ETB {price_value}. Link: {link}")
         titles.append(f"Flash sale on {random_synonym2} for ETB {price_value}! Link: {link}")
 
-    return titles  # Return the list of generated titles
+    return titles
 
 # Function to extract frequent keywords and save to a text file
 def extract_frequent_keywords(titles):
+    ensure_output_directory()  # Ensure the output directory exists
     all_keywords = []
     for title in titles:
         words = re.findall(r'\b\w+\b', title.lower())
@@ -206,9 +203,8 @@ def extract_frequent_keywords(titles):
 
     keyword_counts = Counter(all_keywords).most_common(10)
 
-    # Save keywords to a text file
     try:
-        with open(top_keywords_file_path, "w", encoding='utf-8') as file:
+        with open(os.path.join(output_path, "top_keywords.txt"), "w", encoding='utf-8') as file:
             for keyword, count in keyword_counts:
                 file.write(f"{keyword}: {count}\n")
         write_to_file("status.log", "Top keywords saved to top_keywords.txt")
@@ -227,12 +223,13 @@ def extract_popular_products_after_analysis(titles, item_details):
         matched_items = [item for item in item_details if item['title'] == title]
         if matched_items:
             for item in matched_items:
-                popular_items.append((title, frequency, item['link'], item['price']))  # Include the price
+                popular_items.append((title, frequency, item['link'], item['price']))
 
     return popular_items
 
 # Function to generate dynamic trend analysis and recommendations
 def generate_dynamic_trend_analysis(prices, item_details):
+    ensure_output_directory()  # Ensure the output directory exists
     dominant_category = ''
     try:
         plt.figure(figsize=(10, 6))
@@ -241,11 +238,11 @@ def generate_dynamic_trend_analysis(prices, item_details):
         plt.xlabel('Price (ETB)')
         plt.ylabel('Number of Listings')
         plt.grid(True)
-        plt.savefig(plots_path)  # Save plot directly to designated JPEG file
+        plt.savefig(os.path.join(output_path, "eph.jpeg"))  # Save plot directly to designated JPEG file
         plt.close()
 
         bin_width = bins[1] - bins[0]
-        mid_bin = bins[len(bins)//2]
+        mid_bin = bins[len(bins) // 2]
         low_threshold = bins[0]
         mid_threshold = mid_bin
         high_threshold = bins[-1]
@@ -263,7 +260,7 @@ def generate_dynamic_trend_analysis(prices, item_details):
 
         recommendations = generate_recommendations(dominant_category)
 
-        with open(informed_decisions_file_path, "w", encoding='utf-8') as file:
+        with open(os.path.join(output_path, "informed_decisions.txt"), "w", encoding='utf-8') as file:
             file.write(f"Dynamic Trend Analysis: Dominant Price Category: {dominant_category.capitalize()} Products\n")
             file.write("=" * 50 + "\n")
             file.write(recommendations)
@@ -305,7 +302,7 @@ def generate_recommendations(dominant_category):
             "3. Exclusive Membership Pricing: Create a program for repeat buyers that provides ongoing discounts.\n"
             "Example: “Join our Exclusive Club—Leather shoes at ETB 2,350.”\n\n"
         )
-    else:  # Low
+    else:
         recommendations += (
             "For Young Fashion-Conscious Enthusiasts:\n"
             "Low-Priced Leather Shoes (Value Segment)\n"
@@ -321,6 +318,7 @@ def generate_recommendations(dominant_category):
 
 # Main workflow execution
 def main():
+    ensure_output_directory()  # Ensure the output directory exists
     keywords = ["leather shoes", "boots", "shoes for men", "shoes for women"]
 
     # Step 1: Scrape Marketplace Data
@@ -341,3 +339,5 @@ def main():
     # Save popular products to a CSV file
     save_popular_products_to_csv(popular_products)
 
+if __name__ == "__main__":
+    main()
