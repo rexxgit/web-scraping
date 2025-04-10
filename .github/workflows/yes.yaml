@@ -29,6 +29,10 @@ jobs:
           pip install playwright
           playwright install chromium
 
+      - name: Download NLTK WordNet
+        run: |
+          python -m nltk.downloader wordnet
+
       - name: Run scraper script
         run: |
           python3 scripts/eph.py
