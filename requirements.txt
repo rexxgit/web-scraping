@@ -1,9 +1,7 @@
 requests
 beautifulsoup4
-pandas
 pygithub
 playwright
-reportlab
 fake-useragent
 matplotlib
 textblob
