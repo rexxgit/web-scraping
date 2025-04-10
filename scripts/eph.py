@@ -316,28 +316,24 @@ def generate_recommendations(dominant_category):
         )
     return recommendations
 
-# Main workflow execution
-def main():
-    ensure_output_directory()  # Ensure the output directory exists
-    keywords = ["leather shoes", "boots", "shoes for men", "shoes for women"]
+# Run the entire processing workflow
+ensure_output_directory()  # Ensure the output directory exists
+keywords = ["leather shoes", "boots", "shoes for men", "shoes for women"]
 
-    # Step 1: Scrape Marketplace Data
-    items_data, prices_data, titles_data = scrape_facebook_marketplace(keywords=keywords)
+# Step 1: Scrape Marketplace Data
+items_data, prices_data, titles_data = scrape_facebook_marketplace(keywords=keywords)
 
-    # Save the scraped data to CSV
-    save_to_csv(items_data)
+# Save the scraped data to CSV
+save_to_csv(items_data)
 
-    # Extract keywords from titles and save to a text file
-    keywords_data = extract_frequent_keywords(titles_data)
+# Extract keywords from titles and save to a text file
+keywords_data = extract_frequent_keywords(titles_data)
 
-    # Generate dynamic trend analysis
-    dominant_category = generate_dynamic_trend_analysis(prices_data, items_data)
+# Generate dynamic trend analysis
+dominant_category = generate_dynamic_trend_analysis(prices_data, items_data)
 
-    # Extract popular products based on title frequency after trend analysis
-    popular_products = extract_popular_products_after_analysis(titles_data, items_data)
+# Extract popular products based on title frequency after trend analysis
+popular_products = extract_popular_products_after_analysis(titles_data, items_data)
 
-    # Save popular products to a CSV file
-    save_popular_products_to_csv(popular_products)
-
-if __name__ == "__main__":
-    main()
+# Save popular products to a CSV file
+save_popular_products_to_csv(popular_products)
