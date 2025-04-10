@@ -78,62 +78,68 @@ def scrape_facebook_marketplace(min_items=50, keywords=None):
     if keywords is None:
         keywords = ["leather shoes", "boots", "shoes for men", "shoes for women"]
 
+    item_details = []
+    prices = []
+    titles = []
+
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=True)
         page = browser.new_page()
         page.goto("https://web.facebook.com/marketplace/profile/100076346097013/")
         page.wait_for_selector('a.x1i10hfl', timeout=10000)
 
-        item_details = []
-        prices = []
-        titles = []
+        try:
+            # Scraping loop
+            while len(item_details) < min_items:
+                items = page.query_selector_all('a.x1i10hfl')
 
-        # Scraping loop
-        while len(item_details) < min_items:
-            items = page.query_selector_all('a.x1i10hfl')
+                for item in items:
+                    title_element = item.query_selector('span.x1lliihq.x6ikm8r.x10wlt62.x1n2onr6')
+                    title = title_element.inner_text() if title_element else None
 
-            for item in items:
-                title_element = item.query_selector('span.x1lliihq.x6ikm8r.x10wlt62.x1n2onr6')
-                title = title_element.inner_text() if title_element else None
+                    price_element = item.query_selector('span.x193iq5w')
+                    price = price_element.inner_text() if price_element else None
 
-                price_element = item.query_selector('span.x193iq5w')
-                price = price_element.inner_text() if price_element else None
+                    location_element = item.query_selector('span.x1lliihq.x6ikm8r.x10wlt62.xlyipyv')
+                    location = location_element.inner_text() if location_element else None
 
-                location_element = item.query_selector('span.x1lliihq.x6ikm8r.x10wlt62.xlyipyv')
-                location = location_element.inner_text() if location_element else None
+                    link = item.get_attribute('href')
+                    if link and 'item' in link:
+                        if not link.startswith('https://'):
+                            link = f"https://www.facebook.com{link}"
+                        if '/item/' not in link:
+                            continue
 
-                link = item.get_attribute('href')
-                if link and 'item' in link:
-                    if not link.startswith('https://'):
-                        link = f"https://www.facebook.com{link}"
-                    if '/item/' not in link:
-                        continue
+                    if title and any(keyword.lower() in title.lower() for keyword in keywords):
+                        if price and price.startswith("ETB"):
+                            try:
+                                price_value = int(price.split('ETB')[1].strip().replace(',', ''))
+                                if MIN_PRICE <= price_value <= MAX_PRICE:
+                                    if title not in ["View profile", "Create new listing", "See More", "Sell"] and location and link:
+                                        if not any(keyword in title for keyword in ["California", "Sausalito", "Daly City", "Brisbane"]):
+                                            item_details.append({
+                                                'title': title,
+                                                'price': price,
+                                                'location': location,
+                                                'link': link
+                                            })
+                                            prices.append(price_value)
+                                            titles.append(title)
 
-                if title and any(keyword.lower() in title.lower() for keyword in keywords):
-                    if price and price.startswith("ETB"):
-                        try:
-                            price_value = int(price.split('ETB')[1].strip().replace(',', ''))
-                            if MIN_PRICE <= price_value <= MAX_PRICE:
-                                if title not in ["View profile", "Create new listing", "See More", "Sell"] and location and link:
-                                    if not any(keyword in title for keyword in ["California", "Sausalito", "Daly City", "Brisbane"]):
-                                        item_details.append({
-                                            'title': title,
-                                            'price': price,
-                                            'location': location,
-                                            'link': link
-                                        })
-                                        prices.append(price_value)
-                                        titles.append(title)
+                            except ValueError:
+                                write_to_file("errors.log", f"Skipping item with invalid price: {price}")
+                                continue
 
-            if len(item_details) >= min_items:
-                break
+                if len(item_details) >= min_items:
+                    break
 
-            page.evaluate("window.scrollBy(0, window.innerHeight);")
-            time.sleep(2)
-            if not page.query_selector('a.x1i10hfl'):
-                break
+                page.evaluate("window.scrollBy(0, window.innerHeight);")
+                time.sleep(2)
+                if not page.query_selector('a.x1i10hfl'):
+                    break
 
-        browser.close()
+        finally:
+            browser.close()  # Ensure that the browser closes even if there's an error.
 
     return item_details, prices, titles
 
