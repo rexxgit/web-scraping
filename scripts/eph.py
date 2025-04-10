@@ -320,6 +320,8 @@ def generate_recommendations(dominant_category):
 # Main workflow execution
 def main():
     keywords = ["leather shoes", "boots", "shoes for men", "shoes for women"]
+    
+    # Step 1: Scrape Marketplace Data
     items_data, prices_data, titles_data = scrape_facebook_marketplace(keywords=keywords)
 
     # Save the scraped data to CSV
@@ -343,4 +345,5 @@ def main():
 
     # Save popular products to a CSV file
     save_popular_products_to_csv(popular_products)
+
 
