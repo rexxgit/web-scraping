@@ -29,9 +29,16 @@ jobs:
           pip install playwright
           playwright install chromium
 
+      - name: Cache NLTK data
+        uses: actions/cache@v2
+        with:
+          path: ~/nltk_data
+          key: nltk-data-${{ runner.os }}-${{ hashFiles('**/requirements.txt') }}
+
       - name: Download NLTK WordNet
         run: |
-          python -m nltk.downloader wordnet
+          mkdir -p ~/nltk_data
+          python -m nltk.downloader -d ~/nltk_data wordnet
 
       - name: Run scraper script
         run: |
