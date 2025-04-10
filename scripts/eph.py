@@ -13,14 +13,14 @@ MIN_PRICE = 1800
 MAX_PRICE = 3500
 
 # Define the main output path
-output_path = "eco/eph"  # Base output folder
+output_path = "eco/test"  # Base output folder
 
 # Ensure the output directory exists
 os.makedirs(output_path, exist_ok=True)
 
 # File paths
-plots_path = os.path.join(output_path, "eph.jpeg")  # For storing plots
-csv_file_path = os.path.join(output_path, "eph.csv")  # For storing main CSV data
+plots_path = os.path.join(output_path, "test.jpeg")  # For storing plots
+csv_file_path = os.path.join(output_path, "test.csv")  # For storing main CSV data
 popular_products_file_path = os.path.join(output_path, "popular_products.csv")  # For popular products
 trend_analysis_file_path = os.path.join(output_path, "trend_analysis.txt")  # For trend analysis
 informed_decisions_file_path = os.path.join(output_path, "informed_decisions.txt")  # For informed decisions
