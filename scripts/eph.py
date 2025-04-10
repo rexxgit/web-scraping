@@ -63,7 +63,7 @@ def save_to_csv(item_details, filename="eph.csv"):
 # Function to save tailored titles to a text file
 def save_tailored_titles_to_txt(titles, filename="tailored_keywords.txt"):
     try:
-        with open(os.path.join(output_path, filename), "w", encoding='utf-8') as file:
+        with open(os.path.join(output_path, filename), "a", encoding='utf-8') as file:
             for title in titles:
                 file.write(f"{title}\n")
         write_to_file("status.log", f"Tailored titles saved successfully to {filename}")
@@ -139,6 +139,11 @@ def scrape_facebook_marketplace(min_items=50, keywords=None):
                                         })
                                         prices.append(price_value)
                                         titles.append(title)
+
+                                        # Generate tailored titles during scraping
+                                        tailored_titles = generate_tailored_titles(item_details[-1])
+                                        save_tailored_titles_to_txt(tailored_titles)
+
                         except ValueError:
                             write_to_file("errors.log", f"Skipping item with invalid price: {price}")
                             continue
@@ -163,35 +168,32 @@ def get_synonyms(word):
     return [word]
 
 # Function to generate tailored titles based on item details
-def generate_tailored_titles(item_details):
+def generate_tailored_titles(item):
     titles = []
-    for item in item_details:
-        title = item['title']
-        price_value = int(item['price'].split('ETB')[1].strip().replace(',', ''))  # Getting the price value
-        link = item['link']
+    title = item['title']
+    price_value = int(item['price'].split('ETB')[1].strip().replace(',', ''))  # Getting the price value
+    link = item['link']
 
-        # Generate some synonyms for the title
-        synonyms = get_synonyms(title)
-        if len(synonyms) > 1:  # Ensure we have at least two synonyms to choose from
-            random_synonym1 = random.choice(synonyms)
-            random_synonym2 = random.choice(synonyms)
-            while random_synonym2 == random_synonym1:  # Ensure second synonym is different
-                random_synonym2 = random.choice(synonyms)
-        else:
-            random_synonym1 = random_synonym2 = title  # Fall back to the original title
+    # Generate some synonyms for the title
+    synonyms = get_synonyms(title)
+    random_synonym1 = random.choice(synonyms)
+    random_synonym2 = random.choice(synonyms)
+    
+    while random_synonym2 == random_synonym1:  # Ensure second synonym is different
+        random_synonym2 = random.choice(synonyms)
 
-        # Choose a template based on price range
-        if 2800 <= price_value <= 3500:  # High Price Range
-            titles.append(f"Premium {random_synonym1} | {title} for just ETB {price_value} — perfect for discerning professionals. Link: {link}")
-            titles.append(f"Exclusive offer: {random_synonym2} at ETB {price_value}. Customizable options available! Link: {link}")
+    # Choose a template based on price range
+    if 2800 <= price_value <= 3500:  # High Price Range
+        titles.append(f"Premium {random_synonym1} | {title} for just ETB {price_value} — perfect for discerning professionals. Link: {link}")
+        titles.append(f"Exclusive offer: {random_synonym2} at ETB {price_value}. Customizable options available! Link: {link}")
 
-        elif 2200 <= price_value < 2800:  # Mid Price Range
-            titles.append(f"Stylish {random_synonym1} | {title} for ETB {price_value}. Limited time only! Link: {link}")
-            titles.append(f"Seasonal Sale on {random_synonym2}! Now just ETB {price_value}. Link: {link}")
+    elif 2200 <= price_value < 2800:  # Mid Price Range
+        titles.append(f"Stylish {random_synonym1} | {title} for ETB {price_value}. Limited time only! Link: {link}")
+        titles.append(f"Seasonal Sale on {random_synonym2}! Now just ETB {price_value}. Link: {link}")
 
-        else:  # Low Price Range
-            titles.append(f"Affordable {random_synonym1} starting at ETB {price_value}. Link: {link}")
-            titles.append(f"Flash sale on {random_synonym2} for ETB {price_value}! Link: {link}")
+    else:  # Low Price Range
+        titles.append(f"Affordable {random_synonym1} starting at ETB {price_value}. Link: {link}")
+        titles.append(f"Flash sale on {random_synonym2} for ETB {price_value}! Link: {link}")
 
     return titles  # Return the list of generated titles
 
@@ -320,19 +322,12 @@ def generate_recommendations(dominant_category):
 # Main workflow execution
 def main():
     keywords = ["leather shoes", "boots", "shoes for men", "shoes for women"]
-    
+
     # Step 1: Scrape Marketplace Data
     items_data, prices_data, titles_data = scrape_facebook_marketplace(keywords=keywords)
 
     # Save the scraped data to CSV
     save_to_csv(items_data)
-
-    # Generate tailored titles and save them to a text file
-    tailored_titles = generate_tailored_titles(items_data)
-    save_tailored_titles_to_txt(tailored_titles)
-
-    # Load popular titles from CSV
-    popular_titles = load_popular_titles(popular_products_file_path)
 
     # Extract keywords from titles and save to a text file
     keywords_data = extract_frequent_keywords(titles_data)
@@ -345,5 +340,4 @@ def main():
 
     # Save popular products to a CSV file
     save_popular_products_to_csv(popular_products)
-
 
