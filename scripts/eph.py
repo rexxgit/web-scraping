@@ -13,7 +13,7 @@ MIN_PRICE = 1800
 MAX_PRICE = 3500
 
 # Define the main output path
-output_path = "eco/test"  # Base output folder
+output_path = "web-scraping/"  # Base output folder
 
 # Ensure the output directory exists
 os.makedirs(output_path, exist_ok=True)
