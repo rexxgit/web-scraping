@@ -4,5 +4,5 @@ pygithub
 playwright
 fake-useragent
 matplotlib
-textblob
-nltk
+
+
