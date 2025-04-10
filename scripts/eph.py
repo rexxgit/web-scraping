@@ -5,6 +5,12 @@ import time
 from collections import Counter
 from playwright.sync_api import sync_playwright
 import matplotlib.pyplot as plt
+from textblob import Word  # Importing TextBlob's Word for synonym handling
+import random
+
+# Constants for price thresholds
+MIN_PRICE = 1800
+MAX_PRICE = 3500
 
 # Define the main output path
 output_path = "eco/eph"  # Base output folder
@@ -19,10 +25,11 @@ popular_products_file_path = os.path.join(output_path, "popular_products.csv")  
 trend_analysis_file_path = os.path.join(output_path, "trend_analysis.txt")  # For trend analysis
 informed_decisions_file_path = os.path.join(output_path, "informed_decisions.txt")  # For informed decisions
 top_keywords_file_path = os.path.join(output_path, "top_keywords.txt")  # For top keywords
+tailored_keywords_file_path = os.path.join(output_path, "tailored_keywords.txt")  # For tailored keywords
 
 # Function to replace print statements with file writing
 def write_to_file(filename, content):
-    with open(os.path.join(output_path, filename), 'a') as f:
+    with open(os.path.join(output_path, filename), 'a', encoding='utf-8') as f:
         f.write(content + "\n")
 
 # Function to load popular product titles from a CSV (without pandas)
@@ -54,9 +61,9 @@ def save_to_csv(item_details, filename="eph.csv"):
         write_to_file("errors.log", f"Error saving data to CSV: {e}")
 
 # Function to save tailored titles to a text file
-def save_tailored_titles_to_txt(titles, filename="top_keywords.txt"):
+def save_tailored_titles_to_txt(titles, filename="tailored_keywords.txt"):
     try:
-        with open(os.path.join(output_path, filename), "w") as file:
+        with open(os.path.join(output_path, filename), "w", encoding='utf-8') as file:
             for title in titles:
                 file.write(f"{title}\n")
         write_to_file("status.log", f"Tailored titles saved successfully to {filename}")
@@ -121,7 +128,7 @@ def scrape_facebook_marketplace(min_items=50, keywords=None):
                     if price and price.startswith("ETB"):
                         try:
                             price_value = int(price.split('ETB')[1].strip().replace(',', ''))
-                            if 1800 <= price_value <= 3500:
+                            if MIN_PRICE <= price_value <= MAX_PRICE:
                                 if title not in ["View profile", "Create new listing", "See More", "Sell"] and location and link:
                                     if not any(keyword in title for keyword in ["California", "Sausalito", "Daly City", "Brisbane"]):
                                         item_details.append({
@@ -148,6 +155,46 @@ def scrape_facebook_marketplace(min_items=50, keywords=None):
 
     return item_details, prices, titles
 
+# Function to get synonyms using TextBlob
+def get_synonyms(word):
+    synonyms = Word(word).synsets
+    if synonyms:
+        return [str(lemma.name()) for syn in synonyms for lemma in syn.lemmas() if str(lemma.name()).lower() != word.lower()]
+    return [word]
+
+# Function to generate tailored titles based on item details
+def generate_tailored_titles(item_details):
+    titles = []
+    for item in item_details:
+        title = item['title']
+        price_value = int(item['price'].split('ETB')[1].strip().replace(',', ''))  # Getting the price value
+        link = item['link']
+
+        # Generate some synonyms for the title
+        synonyms = get_synonyms(title)
+        if len(synonyms) > 1:  # Ensure we have at least two synonyms to choose from
+            random_synonym1 = random.choice(synonyms)
+            random_synonym2 = random.choice(synonyms)
+            while random_synonym2 == random_synonym1:  # Ensure second synonym is different
+                random_synonym2 = random.choice(synonyms)
+        else:
+            random_synonym1 = random_synonym2 = title  # Fall back to the original title
+
+        # Choose a template based on price range
+        if 2800 <= price_value <= 3500:  # High Price Range
+            titles.append(f"Premium {random_synonym1} | {title} for just ETB {price_value} — perfect for discerning professionals. Link: {link}")
+            titles.append(f"Exclusive offer: {random_synonym2} at ETB {price_value}. Customizable options available! Link: {link}")
+
+        elif 2200 <= price_value < 2800:  # Mid Price Range
+            titles.append(f"Stylish {random_synonym1} | {title} for ETB {price_value}. Limited time only! Link: {link}")
+            titles.append(f"Seasonal Sale on {random_synonym2}! Now just ETB {price_value}. Link: {link}")
+
+        else:  # Low Price Range
+            titles.append(f"Affordable {random_synonym1} starting at ETB {price_value}. Link: {link}")
+            titles.append(f"Flash sale on {random_synonym2} for ETB {price_value}! Link: {link}")
+
+    return titles  # Return the list of generated titles
+
 # Function to extract frequent keywords and save to a text file
 def extract_frequent_keywords(titles):
     all_keywords = []
@@ -159,7 +206,7 @@ def extract_frequent_keywords(titles):
 
     # Save keywords to a text file
     try:
-        with open(top_keywords_file_path, "w") as file:
+        with open(top_keywords_file_path, "w", encoding='utf-8') as file:
             for keyword, count in keyword_counts:
                 file.write(f"{keyword}: {count}\n")
         write_to_file("status.log", "Top keywords saved to top_keywords.txt")
@@ -214,7 +261,7 @@ def generate_dynamic_trend_analysis(prices, item_details):
 
         recommendations = generate_recommendations(dominant_category)
 
-        with open(informed_decisions_file_path, "w") as file:
+        with open(informed_decisions_file_path, "w", encoding='utf-8') as file:
             file.write(f"Dynamic Trend Analysis: Dominant Price Category: {dominant_category.capitalize()} Products\n")
             file.write("=" * 50 + "\n")
             file.write(recommendations)
@@ -270,26 +317,30 @@ def generate_recommendations(dominant_category):
         )
     return recommendations
 
-# Workflow execution
-keywords = ["leather shoes", "boots", "shoes for men", "shoes for women"]
-items_data, prices_data, titles_data = scrape_facebook_marketplace(keywords=keywords)
+# Main workflow execution
+def main():
+    keywords = ["leather shoes", "boots", "shoes for men", "shoes for women"]
+    items_data, prices_data, titles_data = scrape_facebook_marketplace(keywords=keywords)
 
-# Save the scraped data to CSV
-save_to_csv(items_data)
+    # Save the scraped data to CSV
+    save_to_csv(items_data)
 
-# Load popular titles from CSV
-popular_titles = load_popular_titles(popular_products_file_path)
+    # Generate tailored titles and save them to a text file
+    tailored_titles = generate_tailored_titles(items_data)
+    save_tailored_titles_to_txt(tailored_titles)
 
-# Extract keywords from titles and save to a text file
-keywords_data = extract_frequent_keywords(titles_data)
+    # Load popular titles from CSV
+    popular_titles = load_popular_titles(popular_products_file_path)
 
-# Generate dynamic trend analysis
-dominant_category = generate_dynamic_trend_analysis(prices_data, items_data)
+    # Extract keywords from titles and save to a text file
+    keywords_data = extract_frequent_keywords(titles_data)
 
-# Extract popular products based on title frequency after trend analysis
-popular_products = extract_popular_products_after_analysis(titles_data, items_data)
+    # Generate dynamic trend analysis
+    dominant_category = generate_dynamic_trend_analysis(prices_data, items_data)
 
-# Save popular products to a CSV file
-save_popular_products_to_csv(popular_products)
+    # Extract popular products based on title frequency after trend analysis
+    popular_products = extract_popular_products_after_analysis(titles_data, items_data)
 
-# Note: generate_product_links_file function and its call have been removed.
+    # Save popular products to a CSV file
+    save_popular_products_to_csv(popular_products)
+
