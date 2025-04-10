@@ -30,7 +30,7 @@ jobs:
           playwright install chromium
 
       - name: Cache NLTK data
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/nltk_data
           key: nltk-data-${{ runner.os }}-${{ hashFiles('**/requirements.txt') }}
